@@ -54,7 +54,9 @@
 
     body {
       font-family: var(--font-body);
-      background-color: var(--bg-dark);
+      background: radial-gradient(circle at 50% 20%, #15103a 0%, #0a0724 45%, #050210 100%) !important;
+      background-attachment: fixed !important;
+      background-size: cover !important;
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
@@ -70,15 +72,7 @@
     /* ==========================================================
        CANVAS & COSMIC AMBIENT GLOWS
        ========================================================== */
-    #space-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
+    #space-canvas { display: none !important; }
 
     .ambient-glow {
       position: fixed;
@@ -970,7 +964,7 @@
     }
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 28px;
     }
     .review-card {
@@ -1201,14 +1195,19 @@
        ========================================================== */
     #lightbox-modal {
       display: none;
-      position: relative;
-      inset: 0;
-      z-index: 10000;
-      background: rgba(3, 1, 8, 0.94);
-      backdrop-filter: blur(25px);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999 !important;
+      background: rgba(3, 1, 8, 0.95) !important;
+      backdrop-filter: blur(25px) !important;
+      -webkit-backdrop-filter: blur(25px) !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 20px !important;
+      box-sizing: border-box !important;
     }
     .lightbox-inner {
       position: relative;
@@ -1306,43 +1305,38 @@
        1. STYLISH MULTI-COLOR "GOS" BRAND LOGO BADGE
        ========================================================== */
     .stylish-gos-logo {
-      min-width: 52px;
+      padding: 4px 16px;
       height: 34px;
-      padding: 0 7px;
       border-radius: 10px;
-      background: linear-gradient(135deg, rgba(255, 42, 133, 0.35) 0%, rgba(139, 92, 246, 0.45) 50%, rgba(6, 182, 212, 0.35) 100%);
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(168, 85, 247, 0.25) 100%);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 1.5px;
-      border: 1.5px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 0 16px rgba(139, 92, 246, 0.5), 0 0 10px rgba(6, 182, 212, 0.3);
+      border: 1.5px solid rgba(6, 182, 212, 0.6);
+      box-shadow: 0 0 18px rgba(6, 182, 212, 0.45), inset 0 0 10px rgba(168, 85, 247, 0.3);
       font-family: var(--font-heading, sans-serif);
-      font-size: 1.05rem;
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0.02em;
       user-select: none;
       flex-shrink: 0;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
     }
-    .nav-brand:hover .stylish-gos-logo,
-    .footer-brand:hover .stylish-gos-logo {
-      transform: scale(1.08) rotate(2deg);
-      box-shadow: 0 0 25px rgba(255, 42, 133, 0.8), 0 0 15px rgba(251, 191, 36, 0.8);
+    .nav-brand-group:hover .stylish-gos-logo {
+      transform: translateY(-2px) scale(1.05);
+      border-color: rgba(168, 85, 247, 0.8);
+      box-shadow: 0 0 28px rgba(168, 85, 247, 0.65), inset 0 0 16px rgba(6, 182, 212, 0.4);
     }
-    .gos-g {
-      color: #ffffff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    .logo-icon {
+      font-size: 0.95rem;
+      filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8));
     }
-    .gos-o {
-      color: #fbbf24;
-      text-shadow: 0 0 10px rgba(251, 191, 36, 0.95);
-      font-size: 1.12rem;
-    }
-    .gos-s {
-      color: #22d3ee;
-      text-shadow: 0 0 8px rgba(34, 211, 238, 0.9);
+    .gos-text {
+      font-weight: 900;
+      font-size: 1.08rem;
+      letter-spacing: 1.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
     }
 
     /* ==========================================================
@@ -3825,12 +3819,663 @@
       }
     }
 
+
+    /* ==========================================================
+       PRO HERO SECTION: CLEAN, ELEGANT & ULTRA-MODERN
+       ========================================================== */
+    .pro-hero-section {
+      margin-top: 60px;
+      padding: 18px 20px 0;
+      background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #070716 80%);
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pro-hero-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+      padding-top: 10px;
+      padding-bottom: 30px;
+    }
+    .pro-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #c084fc;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+    }
+    .pro-hero-title {
+      font-family: var(--font-heading, sans-serif);
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.22;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+    .gradient-cyan-purple {
+      background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .pro-hero-subtitle-highlight {
+      font-size: 0.85em;
+      color: #e2e8f0;
+      font-weight: 800;
+    }
+    .pro-hero-desc {
+      font-family: var(--font-body, sans-serif);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      max-width: 620px;
+    }
+    .pro-hero-bullets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .bullet-tag {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .pro-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+    .pro-btn-primary {
+      background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+      color: #ffffff !important;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(6, 182, 212, 0.45);
+      transition: transform 0.25 ease, box-shadow 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .pro-btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(6, 182, 212, 0.65);
+    }
+    .pro-btn-whatsapp {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #4ade80 !important;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 1.02rem;
+      font-weight: 800;
+      padding: 14px 26px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .pro-btn-whatsapp:hover {
+      background: rgba(34, 197, 94, 0.28);
+      transform: translateY(-3px);
+    }
+    .pro-hero-trust-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-body, sans-serif);
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .stars-row { color: #fbbf24; }
+    .trust-divider { color: rgba(255,255,255,0.2); }
+
+    /* VISUAL MOCKUP FRAME */
+    .pro-hero-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-mockup-frame {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 28px;
+      padding: 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(168, 85, 247, 0.25);
+    }
+    .hero-featured-poster-wrap {
+      width: 100%;
+      height: 480px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+    }
+    .hero-featured-poster-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+    }
+    .poster-overlay-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 65%, rgba(7,7,22,0.9) 100%);
+      pointer-events: none;
+    }
+    .poster-badge-category {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
+      color: #38bdf8;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .floating-trust-card {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(7, 7, 22, 0.9);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 8px 16px;
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      z-index: 25;
+    }
+    .top-left-badge { top: -16px; left: -20px; }
+    .bottom-right-badge { bottom: 80px; right: -20px; }
+    .badge-icon { font-size: 1.4rem; }
+    .badge-text strong { display: block; font-family: var(--font-heading); font-size: 0.88rem; color: #fff; }
+    .badge-text span { font-family: var(--font-body); font-size: 0.75rem; color: #94a3b8; }
+
+    .hero-mockup-thumbs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .mockup-thumb {
+      width: 54px;
+      height: 72px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      opacity: 0.65;
+      transition: all 0.25s ease;
+    }
+    .mockup-thumb.active, .mockup-thumb:hover {
+      border-color: #06b6d4;
+      opacity: 1;
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+    }
+    .mockup-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* PRO MARQUEE STRIP */
+    .pro-hero-marquee-strip {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 0;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+    .pro-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: proMarqueeSlide 28s linear infinite;
+    }
+    @keyframes proMarqueeSlide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .pro-marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      white-space: nowrap;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      padding-right: 20px;
+    }
+    .m-sep { color: #a855f7; font-size: 0.8rem; }
+
+    @media (max-width: 992px) {
+      .pro-hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+      }
+      .pro-hero-desc { margin: 0 auto 24px; }
+      .pro-hero-bullets, .pro-hero-actions, .pro-hero-trust-bar {
+        justify-content: center;
+      }
+      .top-left-badge { left: 10px; }
+      .bottom-right-badge { right: 10px; }
+    }
+
+
+    /* ==========================================================
+       ULTRA-PREMIUM PORTFOLIO GALLERY CARD STYLING
+       ========================================================== */
+    .portfolio-section {
+      padding: 90px 0 110px;
+      background: radial-gradient(circle at 50% 30%, #15103a 0%, #070716 85%);
+      position: relative;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .gallery-item {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 24px;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px) scale(1.015);
+      border-color: rgba(6, 182, 212, 0.8);
+      box-shadow: 0 20px 45px rgba(6, 182, 212, 0.35), 0 0 25px rgba(168, 85, 247, 0.4);
+    }
+    .gallery-thumb-wrap {
+      width: 100%;
+      height: 440px;
+      position: relative;
+      background: #020617;
+      overflow: hidden;
+    }
+    .gallery-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .gallery-item:hover .gallery-thumb-wrap img {
+      transform: scale(1.04);
+    }
+    .gallery-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 10;
+      background: rgba(7, 7, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #38bdf8;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 100px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    .gallery-info {
+      padding: 20px 22px;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .gallery-cat {
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #a855f7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .gallery-title {
+      font-family: var(--font-heading, sans-serif);
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .gallery-sub {
+      font-family: var(--font-body, sans-serif);
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+
+    /* ULTRA-PREMIUM COMPACT HERO DEAL & LIVE COUNTDOWN BADGE */
+    .hero-deal-urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.16) 0%, rgba(168, 85, 247, 0.18) 100%);
+      border: 1.5px solid rgba(244, 63, 94, 0.45);
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 25px rgba(244, 63, 94, 0.25), inset 0 0 12px rgba(168, 85, 247, 0.2);
+      width: fit-content;
+      animation: badgeGlowPulse 4s ease-in-out infinite alternate;
+    }
+    @keyframes badgeGlowPulse {
+      0% { box-shadow: 0 0 20px rgba(244, 63, 94, 0.25), inset 0 0 10px rgba(168, 85, 247, 0.2); }
+      100% { box-shadow: 0 0 35px rgba(244, 63, 94, 0.45), inset 0 0 16px rgba(6, 182, 212, 0.3); }
+    }
+    .deal-prices-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .deal-old-price {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-decoration: line-through;
+      text-decoration-color: #f43f5e;
+      text-decoration-thickness: 2px;
+    }
+    .deal-curr-price {
+      font-family: var(--font-heading, sans-serif);
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #22d3ee;
+      letter-spacing: -0.5px;
+      text-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
+    }
+    .deal-off-tag {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+    }
+    .deal-v-sep {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.9rem;
+    }
+    .deal-countdown-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .deal-clock-icon {
+      font-size: 0.9rem;
+    }
+    .deal-time-digits {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-family: var(--font-mono, monospace);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .ht-digit {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: #ffffff;
+    }
+    .ht-unit {
+      font-size: 0.72rem;
+      color: #38bdf8;
+      margin-right: 2px;
+    }
+
+
+    /* FIX HERO MOCKUP BADGE OVERLAP */
+    .hero-mockup-frame {
+      position: relative;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(6, 182, 212, 0.2);
+    }
+    .hero-featured-poster-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 9 / 14;
+      background: #09061a;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .hero-featured-poster-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .poster-badge-category {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 7, 36, 0.92);
+      border: 1px solid rgba(34, 211, 238, 0.5);
+      color: #38bdf8;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 100px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      white-space: nowrap;
+      z-index: 5;
+    }
+    .floating-trust-card.top-left-badge {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      z-index: 10;
+    }
+    .floating-trust-card.bottom-right-badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      bottom: auto;
+      z-index: 10;
+    }
+
+
+    /* 3-COLUMN SPLIT GRID MATCHING SCREENSHOT EXACTLY */
+    .pricing-showcase-split-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      max-width: 1340px;
+      margin: 32px auto 0;
+    }
+    @media (max-width: 1080px) {
+      .pricing-showcase-split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .showcase-gallery-card-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(20px);
+    }
+    .pro-pricing-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .pro-pricing-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(34, 211, 238, 0.4);
+    }
+    .pro-pricing-card.premium-card-glow {
+      border: 1.5px solid rgba(6, 182, 212, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(6, 182, 212, 0.15);
+    }
+    .popular-ribbon-tag {
+      position: absolute;
+      top: -14px;
+      right: 24px;
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      color: #ffffff;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 100px;
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.6);
+      z-index: 10;
+    }
+
+    /* CARD MINI URGENCY ROW */
+    .card-urgency-row-pill {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: #f87171;
+      font-family: var(--font-heading, sans-serif);
+      font-weight: 700;
+      margin: 12px 0;
+    }
+    .urgency-timer-countdown-text {
+      color: #ffffff;
+      font-family: var(--font-mono, monospace);
+      font-weight: 800;
+    }
+
+    /* CARD MINI DURATION SELECTOR WITH PRICES */
+    .card-mini-dur-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 16px;
+    }
+    .mini-dur-pill {
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 6px;
+      cursor: pointer;
+      color: #94a3b8;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .mini-dur-pill.active {
+      background: rgba(59, 130, 246, 0.25);
+      border: 1px solid rgba(59, 130, 246, 0.6);
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    }
+    #pcard-btn-1m.active, #pcard-btn-3m.active {
+      background: rgba(6, 182, 212, 0.25);
+      border: 1px solid rgba(6, 182, 212, 0.6);
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+    }
+    .mdp-txt {
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .mdp-price {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .mini-dur-pill.active .mdp-price {
+      color: #ffffff;
+    }
+
 </style>
 </head>
 <body>
 
 <!-- COSMIC STARFIELD CANVAS -->
-<canvas id="space-canvas"></canvas>
+<!-- Canvas removed for clean premium background -->
 
 <!-- NEBULA ATMOSPHERE -->
 <div class="ambient-glow glow-1"></div>
@@ -3848,9 +4493,9 @@
     <nav class="navbar-floating-pill">
       <a href="#home" class="nav-brand-group">
         <div class="stylish-gos-logo" aria-label="GOS Logo">
-          <span class="gos-g">G</span><span class="gos-o">O</span><span class="gos-s">S</span>
+          <span class="gos-text">GOS</span>
         </div>
-        <span class="nav-brand-title">GrowOnline Shop<span class="brand-dot">.</span></span>
+        <span class="nav-brand-title">Grow Online Shop</span>
       </a>
 
       <ul class="nav-links-center">
@@ -3876,101 +4521,130 @@
   <!-- HERO SECTION -->
     <!-- 3-TIER 150-FRAME LIVE SCROLL HERO -->
     <!-- 3-TIER 150-FRAME LIVE SCROLL HERO -->
-  <section class="android-scroll-hero" id="home">
-    <div class="android-scroll-track" id="hero-scroll-track">
-      <div class="android-sticky-stage" id="hero-sticky-stage">
+    <!-- HERO SECTION: ULTRA PROFESSIONAL AGENCY FRONT PAGE -->
+  <section class="pro-hero-section" id="home">
+    <div class="pro-hero-container">
 
-        <!-- 1. TOP TIER: 4-PHASE STORY + RUNNING MARQUEE -->
-        <div class="hero-top-tier">
-          <div class="hero-top-story-bar" id="hero-top-story-bar">
-            <div class="hero-phase-pill" id="hero-phase-pill">
-              <span id="hero-phase-tag">🔴 Problem / Attention</span>
-            </div>
-            <h2 class="hero-phase-title" id="hero-phase-title">दुकान है, लेकिन ग्राहक ऑनलाइन नहीं आ रहे?</h2>
-            <p class="hero-phase-subtitle" id="hero-phase-subtitle">ऑनलाइन मौजूदगी कमजोर है? दुकान खाली क्यों रहे?</p>
-            <div class="hero-phase-cta-wrap" id="hero-phase-cta" style="display: none; opacity: 0;">
-              <a href="#starter-card" class="hero-phase-cta-btn" id="hero-phase-cta-btn" onclick="scrollToStarterPack(event)">
-                <span id="hero-phase-cta-text">आज ही ऑर्डर करें →</span>
-              </a>
-            </div>
+      <!-- LEFT COLUMN: HIGH CONVERTING AGENCY COPY & CTAs -->
+      <div class="pro-hero-content">
+        <div class="pro-badge-pill">
+          <span class="badge-dot">⚡</span>
+          <span id="hero-badge-txt">भारत की #1 डिजिटल ग्रोथ एजेंसी · GOS</span>
+        </div>
+
+        <h1 class="pro-hero-title">
+          <span id="hero-title-line1">अपनी दुकान को दें</span> <span class="gradient-cyan-purple" id="hero-title-highlight">डिजिटल पहचान</span>
+        </h1>
+
+        <p class="pro-hero-desc" id="hero-desc-txt">
+          4K WhatsApp स्टेटस, फ़ेस्टिवल पोस्टर्स और HD प्रोमो वीडियोज़ — 24 घंटे में रेडी!
+        </p>
+
+        <div class="pro-hero-bullets">
+          <div class="bullet-tag" id="hero-bullet-1">⚡ 24-घंटे एक्सप्रेस डिलीवरी</div>
+          <div class="bullet-tag" id="hero-bullet-2">🎨 100% कस्टम नाम व नंबर</div>
+          <div class="bullet-tag" id="hero-bullet-3">🔥 सिर्फ ₹499 से शुरू</div>
+        </div>
+
+                <!-- PREMIUM COMPACT HERO DEAL & LIVE COUNTDOWN BADGE -->
+        <div class="hero-deal-urgency-badge">
+          <div class="deal-prices-group">
+            <span class="deal-old-price">₹999</span>
+            <span class="deal-curr-price">₹499</span>
+            <span class="deal-off-tag" id="hero-deal-off-badge">50% छूट 🔥</span>
           </div>
-
-          <!-- MARQUEE STRIP (NICHE - BELOW STORY TEXT, ABOVE VIDEO) -->
-          <div class="hero-marquee-strip-wrapper">
-            <div class="hero-marquee-track">
-              <div class="hero-marquee-content" id="hero-marquee-text-1">
-                <span>🚀 अपनी दुकान को दें ऑनलाइन पहचान GrowOnline के साथ</span>
-                <span class="marquee-sep">✦</span>
-                <span>📱 4K WhatsApp स्टेटस व पोस्टर्स</span>
-                <span class="marquee-sep">✦</span>
-                <span>🔥 सिर्फ ₹499 से शुरू</span>
-                <span class="marquee-sep">✦</span>
-                <span>⚡ 24 घंटे में डिलीवरी</span>
-                <span class="marquee-sep">✦</span>
-              </div>
-              <div class="hero-marquee-content" id="hero-marquee-text-2" aria-hidden="true">
-                <span>🚀 अपनी दुकान को दें ऑनलाइन पहचान GrowOnline के साथ</span>
-                <span class="marquee-sep">✦</span>
-                <span>📱 4K WhatsApp स्टेटस व पोस्टर्स</span>
-                <span class="marquee-sep">✦</span>
-                <span>🔥 सिर्फ ₹499 से शुरू</span>
-                <span class="marquee-sep">✦</span>
-                <span>⚡ 24 घंटे में डिलीवरी</span>
-                <span class="marquee-sep">✦</span>
-              </div>
+          <span class="deal-v-sep">|</span>
+          <div class="deal-countdown-box">
+            <span class="deal-clock-icon">⏳</span>
+            <div class="deal-time-digits">
+              <span class="ht-digit" id="ht-days">02</span><span class="ht-unit" id="ht-lbl-d">d</span> :
+              <span class="ht-digit" id="ht-hours">23</span><span class="ht-unit" id="ht-lbl-h">h</span> :
+              <span class="ht-digit" id="ht-mins">59</span><span class="ht-unit" id="ht-lbl-m">m</span> :
+              <span class="ht-digit" id="ht-secs">46</span><span class="ht-unit" id="ht-lbl-s">s</span>
             </div>
           </div>
         </div>
 
-        <!-- 2. CENTER TIER: 16:9 3D ANIMATION VIDEO (IN EXACT CENTER) -->
-        <div class="hero-center-tier">
-          <div class="hero-video-box">
-            <img id="hero-story-img" src="ezgif-frame-001.jpg" alt="Grow Online 3D Animation" loading="eager" />
-          </div>
+        <div class="pro-hero-actions">
+          <a href="#starter-card" class="pro-btn-primary" id="hero-cta-starter" onclick="scrollToStarterPack(event)">
+            <span>🚀 <span id="hero-cta-starter-txt">आज ही ऑर्डर करें — ₹499 से शुरू</span></span>
+          </a>
+          <a href="https://wa.me/919258864392?text=Hello%20GrowOnline%20Shop!%20I%20want%20to%20know%20more%20about%20your%20creative%20services." target="_blank" class="pro-btn-whatsapp" id="hero-cta-wa">
+            <span>💬 <span id="hero-cta-wa-txt">WhatsApp पर बात करें</span></span>
+          </a>
         </div>
 
-        <!-- 3. BOTTOM TIER: SCROLL DOWN HINT + GEMINI POSTERS RUNNING LEFT TO RIGHT -->
-        <div class="hero-bottom-tier">
-          <div class="hero-bottom-scroll-hint" id="hero-bottom-scroll-hint">
-            <span>👇</span> <span id="hero-scroll-indicator-text">Scroll Down (नीचे स्क्रॉल करें)</span> <span>👇</span>
-          </div>
-          <div class="hero-posters-slider-wrap">
-            <div class="hero-posters-track">
-              <!-- Set 1 -->
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png" alt="Fashion Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Grocery Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Festive Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Cafe Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Saloon Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png" alt="Real Estate Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_mz1ss7mz1ss7mz1s.png" alt="Bakery Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Footwear Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Gym Poster" loading="lazy" /></div>
+        <div class="pro-hero-trust-bar">
+          <div class="trust-text" id="hero-trust-cnt">🔥 100+ Local Stores Scaling Online</div>
+        </div>
+      </div>
 
-              <!-- Set 2 -->
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png" alt="Fashion Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Grocery Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Festive Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Cafe Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Saloon Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png" alt="Real Estate Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_mz1ss7mz1ss7mz1s.png" alt="Bakery Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Footwear Poster" loading="lazy" /></div>
-              <div class="hero-poster-mini-card"><img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Gym Poster" loading="lazy" /></div>
+      <!-- RIGHT COLUMN: INTERACTIVE LIVE CREATIVE GALLERY MOCKUP -->
+      <div class="pro-hero-visual">
+        <div class="hero-mockup-frame">
+          <!-- FLOATING BADGES -->
+          <div class="floating-trust-card top-left-badge">
+            <span class="badge-icon">🔥</span>
+            <div class="badge-text">
+              <strong>100+ Stores</strong>
+              <span>Active Clients</span>
             </div>
           </div>
-        </div>
 
+          <div class="floating-trust-card bottom-right-badge">
+            <span class="badge-icon">⚡</span>
+            <div class="badge-text">
+              <strong>24h Express</strong>
+              <span>Guaranteed Delivery</span>
+            </div>
+          </div>
+
+          <!-- MAIN FEATURED CREATIVE POSTER DISPLAY -->
+          <div class="hero-featured-poster-wrap">
+            <img id="hero-featured-poster" src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Featured Festive Poster Creative" />
+            <div class="poster-overlay-glow"></div>
+            <div class="poster-badge-category" id="poster-category-tag">🍬 रक्षाबंधन स्पेशल मिठाई</div>
+          </div>
+
+                    <!-- THUMBNAIL SWITCHER STRIP (5 DISTINCT CATEGORIES) -->
+          <div class="hero-mockup-thumbs">
+            <div class="mockup-thumb active" onclick="switchHeroPoster('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', '🍬 रक्षाबंधन स्पेशल मिठाई', this)"><img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets" /></div>
+            <div class="mockup-thumb" onclick="switchHeroPoster('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', '💎 रॉयल गोल्ड व ज्वेलरी', this)"><img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Jewelry" /></div>
+            <div class="mockup-thumb" onclick="switchHeroPoster('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', '👗 कपड़े व फेस्टिव फैशन', this)"><img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" /></div>
+            <div class="mockup-thumb" onclick="switchHeroPoster('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', '🛒 किराना व सुपरमार्ट', this)"><img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Grocery" /></div>
+            <div class="mockup-thumb" onclick="switchHeroPoster('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', '🍕 कैफे व फ़ास्ट फ़ूड', this)"><img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUNNING MARQUEE STRIP AT HERO BOTTOM -->
+    <div class="pro-hero-marquee-strip">
+      <div class="pro-marquee-track">
+        <div class="pro-marquee-content">
+          <span>🚀 अपनी दुकान को दें ऑनलाइन पहचान GrowOnline Shop के साथ</span>
+          <span class="m-sep">✦</span>
+          <span>📱 4K WhatsApp स्टेटस व पोस्टर्स</span>
+          <span class="m-sep">✦</span>
+          <span>🔥 सिर्फ ₹499 से शुरू</span>
+          <span class="m-sep">✦</span>
+          <span>⚡ 24 घंटे में रेडी-टू-पोस्ट डिलीवरी</span>
+          <span class="m-sep">✦</span>
+          <span>✨ रक्षाबंधन एक्सक्लूसिव ऑफ़र</span>
+          <span class="m-sep">✦</span>
+        </div>
+        <div class="pro-marquee-content" aria-hidden="true">
+          <span>🚀 अपनी दुकान को दें ऑनलाइन पहचान GrowOnline Shop के साथ</span>
+          <span class="m-sep">✦</span>
+          <span>📱 4K WhatsApp स्टेटस व पोस्टर्स</span>
+          <span class="m-sep">✦</span>
+          <span>🔥 सिर्फ ₹499 से शुरू</span>
+          <span class="m-sep">✦</span>
+          <span>⚡ 24 घंटे में रेडी-टू-पोस्ट डिलीवरी</span>
+          <span class="m-sep">✦</span>
+          <span>✨ रक्षाबंधन एक्सक्लूसिव ऑफ़र</span>
+          <span class="m-sep">✦</span>
+        </div>
       </div>
     </div>
   </section>
@@ -4020,10 +4694,10 @@
         </button>
       </div>
 
-      <!-- 2-COLUMN SPLIT GRID: LEFT SHOWCASE FIRST, RIGHT CARDS SECOND -->
+            <!-- 3-COLUMN SPLIT GRID MATCHING SCREENSHOT EXACTLY -->
       <div class="pricing-showcase-split-grid">
 
-        <!-- 1. LEFT COLUMN: LIVE DESIGN SHOWCASE (FIRST) -->
+        <!-- 1. LEFT COLUMN: LIVE DESIGN SHOWCASE -->
         <div class="showcase-gallery-card-box">
           <div class="showcase-header-pill-glow" id="showcase-badge-glow">✨ लाइव डिज़ाइन गैलरी</div>
           <h3 class="showcase-headline-title" id="showcase-title-main">पैक्स में शामिल पोस्टर्स व वीडियोज</h3>
@@ -4036,45 +4710,35 @@
                 <!-- Set 1 -->
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Pure Ghee Sweets Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" loading="lazy" />
-                  <div class="showcase-tag-pill">✨ Pure Ghee Sweets</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png', 'Royal Jewellery Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" loading="lazy" />
-                  <div class="showcase-tag-pill">💍 Royal Jewellery</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Festive Offer Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets Sale" loading="lazy" />
-                  <div class="showcase-tag-pill">🎁 Sweets Mega Sale</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Kirana & Grocery Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Kirana" loading="lazy" />
-                  <div class="showcase-tag-pill">🛒 Grocery & Kirana</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Coaching Academy Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" loading="lazy" />
-                  <div class="showcase-tag-pill">🎓 Coaching Academy</div>
                 </div>
 
-                <!-- Set 2 (Duplicate for Seamless Upward Loop) -->
+                <!-- Set 2 -->
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Pure Ghee Sweets Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" loading="lazy" />
-                  <div class="showcase-tag-pill">✨ Pure Ghee Sweets</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png', 'Royal Jewellery Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" loading="lazy" />
-                  <div class="showcase-tag-pill">💍 Royal Jewellery</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Festive Offer Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets Sale" loading="lazy" />
-                  <div class="showcase-tag-pill">🎁 Sweets Mega Sale</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Kirana & Grocery Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Kirana" loading="lazy" />
-                  <div class="showcase-tag-pill">🛒 Grocery & Kirana</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Coaching Academy Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" loading="lazy" />
-                  <div class="showcase-tag-pill">🎓 Coaching Academy</div>
                 </div>
               </div>
             </div>
@@ -4082,333 +4746,321 @@
             <!-- Col 2 (Right - Moves DOWN) -->
             <div class="marquee-sub-col">
               <div class="marquee-track-right">
-                <!-- Set 1 -->
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png', 'Salon & Spa Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" loading="lazy" />
-                  <div class="showcase-tag-pill">✂️ Salon & Spa</div>
                 </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png', 'Gift Hampers Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png" alt="Fashion" loading="lazy" />
-                  <div class="showcase-tag-pill">🎁 Gift Hampers</div>
+                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Fashion Bazaar Poster')">
+                  <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" loading="lazy" />
                 </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png', 'Street Bites Cafe Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Cafe" loading="lazy" />
-                  <div class="showcase-tag-pill">☕ Street Bites Cafe</div>
+                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Pizza & Burger Cafe Poster')">
+                  <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe BOGO" loading="lazy" />
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Electronics Store Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" loading="lazy" />
-                  <div class="showcase-tag-pill">📱 Electronics Store</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Pharmacy Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" loading="lazy" />
-                  <div class="showcase-tag-pill">💊 Pharmacy & Meds</div>
                 </div>
 
-                <!-- Set 2 (Duplicate for Seamless Downward Loop) -->
+                <!-- Set 2 -->
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png', 'Salon & Spa Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" loading="lazy" />
-                  <div class="showcase-tag-pill">✂️ Salon & Spa</div>
                 </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png', 'Gift Hampers Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png" alt="Fashion" loading="lazy" />
-                  <div class="showcase-tag-pill">🎁 Gift Hampers</div>
+                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Fashion Bazaar Poster')">
+                  <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" loading="lazy" />
                 </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png', 'Street Bites Cafe Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Cafe" loading="lazy" />
-                  <div class="showcase-tag-pill">☕ Street Bites Cafe</div>
+                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Pizza & Burger Cafe Poster')">
+                  <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe BOGO" loading="lazy" />
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Electronics Store Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" loading="lazy" />
-                  <div class="showcase-tag-pill">📱 Electronics Store</div>
                 </div>
                 <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Pharmacy Poster')">
                   <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" loading="lazy" />
-                  <div class="showcase-tag-pill">💊 Pharmacy & Meds</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="showcase-click-hint" id="showcase-footer-hint">
+          <div style="margin-top: 14px; text-align: center; color: var(--cyan-primary); font-size: 0.84rem; font-weight: 700;" id="showcase-footer-hint">
             🔍 किसी भी पोस्टर पर क्लिक करके बड़ा देखें (Click to Zoom)
           </div>
         </div>
 
-        <!-- 2. RIGHT COLUMN: 2 PRICING CARDS (SECOND) -->
-        <div class="pricing-cards-deck-right">
-
-          <!-- CARD 1: STARTER PACK -->
-          <div class="screenshot-pricing-card" id="starter-card">
-            <div>
-              <div class="card-ribbon-pill" id="starter-offer-pill">🎀 रक्षाबंधन स्पेशल ऑफ़र</div>
-
-              <div class="card-timer-row-box">
-                <span class="card-timer-row-lbl">⏳ <span id="starter-urgency-lbl">स्पेशल ऑफ़र:</span></span>
-                <span class="card-timer-row-time" id="starter-urgency-time">2d : 22h : 43m शेष</span>
-              </div>
-
-              <div class="card-segmented-switcher">
-                <button class="card-seg-btn active" id="scard-btn-1m" onclick="setGlobalPlanDuration('1m')">
-                  <span class="card-seg-btn-txt" id="scard-lbl-1m">1 महीने का प्लान</span>
-                  <span class="card-seg-btn-amt">₹499</span>
-                </button>
-                <button class="card-seg-btn" id="scard-btn-3m" onclick="setGlobalPlanDuration('3m')">
-                  <span class="card-seg-btn-txt" id="scard-lbl-3m">3 महीने का कॉम्बो</span>
-                  <span class="card-seg-btn-amt">₹1,199</span>
-                </button>
-              </div>
-
-              <h3 class="pricing-card-h3" id="starter-title-text">स्टार्टर पैक</h3>
-              <p class="pricing-card-p-sub" id="starter-sub-text">4 कस्टम फोटोज + 4 व्हाट्सएप स्टेटस</p>
-
-              <div class="pricing-figure-line">
-                <span class="price-currency">₹</span>
-                <span class="price-huge-number" id="starter-price-val">499</span>
-                <span class="price-strike-val" id="starter-strike-val">वास्तविक मूल्य ₹999</span>
-              </div>
-
-              <div class="save-green-pill" id="starter-save-pill">
-                🔥 <span id="starter-save-txt">₹500 की बचत (50% छूट) · सिर्फ 3 दिन!</span>
-              </div>
-
-              <div class="sample-preview-box">
-                <div class="sample-preview-lbl" id="starter-sample-lbl">शामिल सैम्पल प्रकार:</div>
-                <div class="sample-preview-thumbs">
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" /></div>
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_4um1ct4um1ct4um1.png" alt="Fashion" /></div>
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Grocery" /></div>
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Cafe" /></div>
-                </div>
-              </div>
-
-              <ul class="card-bullets-list">
-                <li id="starter-feat-1"><span class="bullet-check-icon">✓</span> <span><strong>4 कस्टम फोटोज</strong> (दुकान का नाम व फोन नंबर)</span></li>
-                <li id="starter-feat-2"><span class="bullet-check-icon">✓</span> <span><strong>4 स्टेटस पोस्ट्स</strong> (व्हाट्सएप रेडी-टू-पोस्ट)</span></li>
-                <li id="starter-feat-3"><span class="bullet-check-icon">✓</span> <span><strong>रक्षाबंधन एक्सक्लूसिव</strong> डिस्काउंटेड कीमत</span></li>
-                <li id="starter-feat-4"><span class="bullet-check-icon">✓</span> <span>अल्ट्रा एचडी क्लीन फ्लैट वेक्टर रेजोल्यूशन</span></li>
-                <li id="starter-feat-5"><span class="bullet-info-icon">ⓘ</span> <span>नॉन-एडिटेबल फाइनल रेडी फाइल्स</span></li>
-              </ul>
+        <!-- 2. COLUMN 2: STARTER PACK CARD (MATCHING SCREENSHOT) -->
+        <div class="pro-pricing-card starter-card-clean" id="starter-card">
+          <div class="card-inner-pad">
+            <div class="card-category-badge starter-badge">🎀 रक्षाबंधन स्पेशल ऑफ़र</div>
+            
+            <div class="card-urgency-row-pill">
+              <span>⏳ स्पेशल ऑफ़र:</span>
+              <span class="urgency-timer-countdown-text" id="scard-timer-val">2d : 22h : 43m शेष</span>
             </div>
 
-            <a href="https://wa.me/919258864392?text=Hello%20GrowOnline%2C%20I%20want%20to%20order%20the%20Starter%20Pack%20(₹499)" target="_blank" class="card-bottom-cta-btn starter-style" id="btn-order-starter">
-              <span>🚀 <span id="starter-cta-txt">स्टार्टर पैक ऑर्डर करें — ₹499</span></span>
-            </a>
-          </div>
-
-          <!-- CARD 2: GROWTH PRO PACK -->
-          <div class="screenshot-pricing-card pro-card" id="premium-card">
-            <div class="popular-badge-top" id="premium-top-badge">⭐ सबसे लोकप्रिय</div>
-            <div>
-              <div class="card-ribbon-pill" id="premium-offer-pill">🎀 रक्षाबंधन महा ऑफ़र</div>
-
-              <div class="card-timer-row-box">
-                <span class="card-timer-row-lbl">⏳ <span id="premium-urgency-lbl">स्पेशल ऑफ़र:</span></span>
-                <span class="card-timer-row-time" id="premium-urgency-time">2d : 22h : 43m शेष</span>
-              </div>
-
-              <div class="card-segmented-switcher">
-                <button class="card-seg-btn active" id="pcard-btn-1m" onclick="setGlobalPlanDuration('1m')">
-                  <span class="card-seg-btn-txt" id="pcard-lbl-1m">1 महीने का प्लान</span>
-                  <span class="card-seg-btn-amt">₹799</span>
-                </button>
-                <button class="card-seg-btn" id="pcard-btn-3m" onclick="setGlobalPlanDuration('3m')">
-                  <span class="card-seg-btn-txt" id="pcard-lbl-3m">3 महीने का कॉम्बो</span>
-                  <span class="card-seg-btn-amt">₹1,999</span>
-                </button>
-              </div>
-
-              <h3 class="pricing-card-h3" id="premium-title-text">ग्रोथ प्रो पैक</h3>
-              <p class="pricing-card-p-sub" id="premium-sub-text">2 प्रोमो वीडियो + 8 फोटोज + 8 स्टेटस, एडिटेबल</p>
-
-              <div class="pricing-figure-line">
-                <span class="price-currency">₹</span>
-                <span class="price-huge-number" id="premium-price-val">799</span>
-                <span class="price-strike-val" id="premium-strike-val">वास्तविक मूल्य ₹1499</span>
-              </div>
-
-              <div class="save-green-pill" id="premium-save-pill">
-                🔥 <span id="premium-save-txt">₹700 की महाबचत (47% छूट) · सिर्फ 3 दिन!</span>
-              </div>
-
-              <div class="sample-preview-box">
-                <div class="sample-preview-lbl" id="premium-sample-lbl">शामिल सैम्पल्स व प्रोमो वीडियोज:</div>
-                <div class="sample-preview-thumbs">
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" /></div>
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" /></div>
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" /></div>
-                  <div class="thumb-item"><img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" /></div>
-                </div>
-              </div>
-
-              <ul class="card-bullets-list">
-                <li id="premium-feat-1"><span class="bullet-check-icon">✓</span> <span><strong>2 प्रोमो वीडियोज शामिल</strong> (रील्स और ऐड्स)</span></li>
-                <li id="premium-feat-2"><span class="bullet-check-icon">✓</span> <span><strong>8 कस्टम फोटोज और 8 स्टेटस</strong> शामिल</span></li>
-                <li id="premium-feat-3"><span class="bullet-check-icon">✓</span> <span><strong>एडिटेबल फोटोज</strong> व सोर्स टेम्पलेट एक्सेस</span></li>
-                <li id="premium-feat-4"><span class="bullet-check-icon">✓</span> <span>दुकान के नाम व पते के साथ फुल ब्रांडिंग</span></li>
-                <li id="premium-feat-5"><span class="bullet-check-icon">✓</span> <span><strong>प्राथमिकता डिलीवरी</strong> 24 घंटे के अंदर</span></li>
-                <li id="premium-feat-6"><span class="bullet-check-icon">✓</span> <span>रिवीजन के लिए डेडिकेटेड व्हाट्सएप सपोर्ट</span></li>
-              </ul>
+            <!-- CARD DURATION SELECTOR WITH PRICES -->
+            <div class="card-mini-dur-row">
+              <button type="button" class="mini-dur-pill active" id="scard-btn-1m" onclick="setGlobalPlanDuration('1m')">
+                <div class="mdp-txt">1 महीने का प्लान</div>
+                <div class="mdp-price" id="scard-p1">₹499</div>
+              </button>
+              <button type="button" class="mini-dur-pill" id="scard-btn-3m" onclick="setGlobalPlanDuration('3m')">
+                <div class="mdp-txt">3 महीने का कॉम्बो</div>
+                <div class="mdp-price" id="scard-p3">₹1,199</div>
+              </button>
             </div>
 
-            <a href="https://wa.me/919258864392?text=Hello%20GrowOnline%2C%20I%20want%20to%20order%20the%20Premium%20Pack%20(₹799)" target="_blank" class="card-bottom-cta-btn pro-style" id="btn-order-premium">
-              <span>💎 <span id="premium-cta-txt">प्रीमियम पैक ऑर्डर करें — ₹799</span></span>
-            </a>
+            <h3 class="card-main-title" id="starter-title-text" style="font-size: 1.5rem; margin-bottom: 4px;">स्टार्टर पैक</h3>
+            <p class="card-sub-detail" id="starter-sub-text" style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 12px;">4 कस्टम फोटोज + 4 व्हाट्सएप स्टेटस</p>
+
+            <div class="card-price-block" style="margin-bottom: 12px;">
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <span class="price-main-digit" id="starter-price-val" style="font-size: 2.2rem; font-weight: 900; color: #ffffff;">₹ 499</span>
+                <span class="price-strikethrough-sm" id="starter-strike-val" style="color: #64748b; font-size: 0.85rem; text-decoration: line-through;">वास्तविक मूल्य ₹999</span>
+              </div>
+            </div>
+
+            <div class="card-save-highlight starter-save" style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); padding: 5px 12px; border-radius: 8px; font-size: 0.82rem; color: #f87171; font-weight: 700; margin-bottom: 14px;">
+              🔥 <span id="starter-save-txt">₹500 की बचत (50% छूट) · सिर्फ 3 दिन!</span>
+            </div>
+
+            <div class="sample-preview-box" style="margin-bottom: 16px;">
+              <div class="sample-preview-lbl" id="starter-sample-lbl" style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px;">शामिल सैम्पल प्रकार:</div>
+              <div class="sample-preview-thumbs" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets" style="width:100%;height:100%;object-fit:cover;" /></div>
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Jewelry" style="width:100%;height:100%;object-fit:cover;" /></div>
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" style="width:100%;height:100%;object-fit:cover;" /></div>
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Grocery" style="width:100%;height:100%;object-fit:cover;" /></div>
+              </div>
+            </div>
+
+            <ul class="card-bullets-list" style="list-style: none; padding: 0; margin: 0 0 20px; font-size: 0.86rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px;">
+              <li id="starter-feat-1">✓ <span><strong>4 कस्टम फोटोज</strong> (दुकान का नाम व फोन नंबर)</span></li>
+              <li id="starter-feat-2">✓ <span><strong>4 स्टेटस पोस्ट्स</strong> (व्हाट्सएप रेडी-टू-पोस्ट)</span></li>
+              <li id="starter-feat-3">✓ <span><strong>रक्षाबंधन एक्सक्लूसिव</strong> डिस्काउंटेड कीमत</span></li>
+              <li id="starter-feat-4">✓ <span>अल्ट्रा एचडी क्लीन फ्लैट वेक्टर रेजोल्यूशन</span></li>
+              <li id="starter-feat-5" style="color: #94a3b8;">ⓘ <span>नॉन-एडिटेबल फाइनल रेडी फाइल्स</span></li>
+            </ul>
           </div>
 
+          <a href="https://wa.me/919258864392?text=Hello%20GrowOnline%2C%20I%20want%20to%20order%20the%20Starter%20Pack%20(₹499)" target="_blank" class="card-bottom-cta-btn" id="btn-order-starter" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; padding: 12px; border-radius: 100px; text-align: center; text-decoration: none; font-weight: 800; font-family: var(--font-heading); display: block; transition: all 0.3s ease;">
+            <span>🚀 <span id="starter-cta-txt">स्टार्टर पैक ऑर्डर करें — ₹499</span></span>
+          </a>
+        </div>
+
+        <!-- 3. COLUMN 3: PREMIUM GROWTH PRO PACK CARD (MATCHING SCREENSHOT) -->
+        <div class="pro-pricing-card premium-card-glow" id="premium-card">
+          <div class="popular-ribbon-tag" id="premium-top-badge">⭐ सबसे लोकप्रिय</div>
+          <div class="card-inner-pad">
+            <div class="card-category-badge premium-badge" id="premium-offer-pill">🎀 रक्षाबंधन महा ऑफ़र</div>
+
+            <div class="card-urgency-row-pill" style="border-color: rgba(6, 182, 212, 0.35); background: rgba(6, 182, 212, 0.08); color: #38bdf8;">
+              <span>⏳ स्पेशल ऑफ़र:</span>
+              <span class="urgency-timer-countdown-text" id="pcard-timer-val">2d : 22h : 43m शेष</span>
+            </div>
+
+            <!-- CARD DURATION SELECTOR WITH PRICES -->
+            <div class="card-mini-dur-row">
+              <button type="button" class="mini-dur-pill active" id="pcard-btn-1m" onclick="setGlobalPlanDuration('1m')">
+                <div class="mdp-txt">1 महीने का प्लान</div>
+                <div class="mdp-price" id="pcard-p1">₹799</div>
+              </button>
+              <button type="button" class="mini-dur-pill" id="pcard-btn-3m" onclick="setGlobalPlanDuration('3m')">
+                <div class="mdp-txt">3 महीने का कॉम्बो</div>
+                <div class="mdp-price" id="pcard-p3">₹1,999</div>
+              </button>
+            </div>
+
+            <h3 class="card-main-title" id="premium-title-text" style="font-size: 1.5rem; margin-bottom: 4px; color: #ffffff;">ग्रोथ प्रो पैक</h3>
+            <p class="card-sub-detail" id="premium-sub-text" style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 12px;">2 प्रोमो वीडियो + 8 फोटोज + 8 स्टेटस, एडिटेबल</p>
+
+            <div class="card-price-block" style="margin-bottom: 12px;">
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <span class="price-main-digit glow-cyan" id="premium-price-val" style="font-size: 2.2rem; font-weight: 900; color: #22d3ee; text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);">₹ 799</span>
+                <span class="price-strikethrough-sm" id="premium-strike-val" style="color: #64748b; font-size: 0.85rem; text-decoration: line-through;">वास्तविक मूल्य ₹1499</span>
+              </div>
+            </div>
+
+            <div class="card-save-highlight premium-save" style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.4); padding: 5px 12px; border-radius: 8px; font-size: 0.82rem; color: #38bdf8; font-weight: 700; margin-bottom: 14px;">
+              🔥 <span id="premium-save-txt">₹700 की महाबचत (47% छूट) · सिर्फ 3 दिन!</span>
+            </div>
+
+            <div class="sample-preview-box" style="margin-bottom: 16px;">
+              <div class="sample-preview-lbl" id="premium-sample-lbl" style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px;">शामिल सैम्पल्स व प्रोमो वीडियोज:</div>
+              <div class="sample-preview-thumbs" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Jewelry" style="width:100%;height:100%;object-fit:cover;" /></div>
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" style="width:100%;height:100%;object-fit:cover;" /></div>
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" style="width:100%;height:100%;object-fit:cover;" /></div>
+                <div class="thumb-item" style="border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; border: 1px solid rgba(255,255,255,0.1);"><img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" style="width:100%;height:100%;object-fit:cover;" /></div>
+              </div>
+            </div>
+
+            <ul class="card-bullets-list" style="list-style: none; padding: 0; margin: 0 0 20px; font-size: 0.86rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px;">
+              <li id="premium-feat-1">✓ <span><strong>2 प्रोमो वीडियोज शामिल</strong> (रील्स और ऐड्स)</span></li>
+              <li id="premium-feat-2">✓ <span><strong>8 कस्टम फोटोज और 8 स्टेटस</strong> शामिल</span></li>
+              <li id="premium-feat-3">✓ <span><strong>एडिटेबल फोटोज</strong> व सोर्स टेम्पलेट एक्सेस</span></li>
+              <li id="premium-feat-4">✓ <span>दुकान के नाम व पते के साथ फुल ब्रांडिंग</span></li>
+              <li id="premium-feat-5">✓ <span><strong>प्राथमिकता डिलीवरी</strong> 24 घंटे के अंदर</span></li>
+              <li id="premium-feat-6">✓ <span>रिवीजन के लिए डेडिकेटेड व्हाट्सएप सपोर्ट</span></li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/919258864392?text=Hello%20GrowOnline%2C%20I%20want%20to%20order%20the%20Premium%20Pack%20(₹799)" target="_blank" class="card-bottom-cta-btn pro-style" id="btn-order-premium" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); color: #ffffff; padding: 12px; border-radius: 100px; text-align: center; text-decoration: none; font-weight: 800; font-family: var(--font-heading); display: block; box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); transition: all 0.3s ease;">
+            <span>💎 <span id="premium-cta-txt">प्रीमियम पैक ऑर्डर करें — ₹799</span></span>
+          </a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- LIVE PORTFOLIO GALLERY -->
+    <!-- LIVE PORTFOLIO GALLERY (10 DISTINCT WORKING RETAIL CAMPAIGNS) -->
   <section class="portfolio-section" id="portfolio">
     <div class="container">
 
       <div class="section-header">
-        <div class="section-tag">✦ Our Real Work</div>
-        <h2 class="section-heading">Grow Online Shop Gallery</h2>
-        <p class="section-desc">Look through high-definition campaigns we created for real sweets shops, jewellers, fashion outlets, cafes, and supermarkets.</p>
+        <div class="section-tag" id="gallery-tag">✦ हमारा असली काम</div>
+        <h2 class="section-heading" id="gallery-heading">ग्रो ऑनलाइन शॉप गैलरी</h2>
+        <p class="section-desc" id="gallery-desc">मिठाई, ज्वेलरी, फैशन, कैफे और किराना स्टोर्स के लिए हमारे द्वारा तैयार 4K डिज़ाइन्स देखें।</p>
       </div>
 
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-btn active" onclick="filterGallery('all', this)">All Creatives (10+)</button>
-        <button class="filter-btn" onclick="filterGallery('festive', this)">Festive & Sweets</button>
-        <button class="filter-btn" onclick="filterGallery('fashion', this)">Fashion & Luxury</button>
-        <button class="filter-btn" onclick="filterGallery('dining', this)">Cafes & Food</button>
+        <button class="filter-btn active" id="filter-btn-all" onclick="filterGallery('all', this)">सभी डिज़ाइन्स (10+)</button>
+        <button class="filter-btn" id="filter-btn-festive" onclick="filterGallery('festive', this)">त्यौहार व मिठाई</button>
+        <button class="filter-btn" id="filter-btn-fashion" onclick="filterGallery('fashion', this)">फैशन व ज्वेलरी</button>
+        <button class="filter-btn" id="filter-btn-dining" onclick="filterGallery('dining', this)">कैफे व रेस्टोरेंट</button>
       </div>
 
-      <!-- Gallery Grid -->
+      <!-- Gallery Grid (100% Accurate Item Matching) -->
       <div class="portfolio-grid" id="gallery-container">
 
-        <!-- Item 1 -->
-        <div class="gallery-item" data-cat="festive" onclick="openLightbox('Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).jpg', 'Holilal Mishthan — Rakshabandhan Sweets Sale')">
+        <!-- Item 1: Sweets -->
+        <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Shree Mishthan Bhandar — Rakshabandhan Sweets Sale')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">🍬 Festive Offer</span>
-            <img src="Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).jpg" alt="Rakshabandhan Sweets Campaign" />
+            <span class="gallery-badge" id="g-badge-1">🍬 फेस्टिव ऑफ़र</span>
+            <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Rakshabandhan Sweets Campaign" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Sweets & Mishthan</div>
-            <div class="gallery-title">Rakshabandhan Sweets Sale</div>
-            <div class="gallery-sub">Holilal Mishthan Bhandar Series</div>
+            <div class="gallery-cat" id="g-cat-1">मिठाई व मिष्ठान</div>
+            <div class="gallery-title" id="g-title-1">रक्षाबंधन स्पेशल मिठाई सेल</div>
+            <div class="gallery-sub" id="g-sub-1">श्री मिष्ठान भंडार सीरीज़</div>
           </div>
         </div>
 
-        <!-- Item 2 -->
-        <div class="gallery-item" data-cat="fashion festive" onclick="openLightbox('Gemini_Generated_Image_9agfn49agfn49agf.jpg', 'Sri Jewellers — Royal Festive Collection')">
+        <!-- Item 2: Jewellery -->
+        <div class="gallery-item" data-cat="fashion festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Sri Jewellers — Royal Festive Collection')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">💎 Luxury & Gold</span>
-            <img src="Gemini_Generated_Image_9agfn49agfn49agf.jpg" alt="Royal Jewellery Design" />
+            <span class="gallery-badge" id="g-badge-2">💎 रॉयल गोल्ड</span>
+            <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Royal Jewellery Design" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Jewellery & Ornaments</div>
-            <div class="gallery-title">Royal Festive Jewellery</div>
-            <div class="gallery-sub">Sri Jewellers Gold & Diamond Series</div>
+            <div class="gallery-cat" id="g-cat-2">ज्वेलरी व आभूषण</div>
+            <div class="gallery-title" id="g-title-2">रॉयल फेस्टिव गोल्ड ज्वेलरी</div>
+            <div class="gallery-sub" id="g-sub-2">श्री ज्वेलर्स गोल्ड व डायमंड</div>
           </div>
         </div>
 
-        <!-- Item 3 -->
-        <div class="gallery-item" data-cat="fashion" onclick="openLightbox('Gemini_Generated_Image_nn6hsmnn6hsmnn6h.jpg', 'Elite Fashion Bazaar — Up to 90% Off')">
+        <!-- Item 3: Apparel -->
+        <div class="gallery-item" data-cat="fashion" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Elite Fashion Bazaar — Up to 90% Off')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">👗 Clothing Sale</span>
-            <img src="Gemini_Generated_Image_nn6hsmnn6hsmnn6h.jpg" alt="Elite Fashion Bazaar Campaign" />
+            <span class="gallery-badge" id="g-badge-3">👗 कपड़े व फैशन</span>
+            <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Elite Fashion Bazaar Campaign" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Apparel & Fashion</div>
-            <div class="gallery-title">Elite Fashion Festive Sale</div>
-            <div class="gallery-sub">Multi-Category Product Grid</div>
+            <div class="gallery-cat" id="g-cat-3">कपड़े व फैशन</div>
+            <div class="gallery-title" id="g-title-3">एलीट फैशन महा सेल (90% छूट)</div>
+            <div class="gallery-sub" id="g-sub-3">मल्टी-कैटेगरी प्रोडक्ट ग्रिड</div>
           </div>
         </div>
 
-        <!-- Item 4 -->
-        <div class="gallery-item" data-cat="fashion" onclick="openLightbox('Gemini_Generated_Image_4um1ct4um1ct4um1.jpg', 'Step In Footwear Lounge — Ultimate Festive Sale')">
+        <!-- Item 4: Salon & Spa -->
+        <div class="gallery-item" data-cat="fashion" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Smart Cuts Salon & Spa — Festive Makeover 30% Off')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">👟 Footwear & Shoes</span>
-            <img src="Gemini_Generated_Image_4um1ct4um1ct4um1.jpg" alt="Step In Footwear Sale" />
+            <span class="gallery-badge" id="g-badge-4">💄 सैलून व स्पा</span>
+            <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Smart Cuts Salon Campaign" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Footwear Lounge</div>
-            <div class="gallery-title">Festive Footwear Campaign</div>
-            <div class="gallery-sub">Step In Footwear Lounge</div>
+            <div class="gallery-cat" id="g-cat-4">सैलून व मेकओवर</div>
+            <div class="gallery-title" id="g-title-4">फेस्टिव मेकओवर सेल (30% छूट)</div>
+            <div class="gallery-sub" id="g-sub-4">स्मार्ट कट्स सैलून व स्पा</div>
           </div>
         </div>
 
-        <!-- Item 5 -->
-        <div class="gallery-item" data-cat="fashion" onclick="openLightbox('Gemini_Generated_Image_j36lk8j36lk8j36l.jpg', 'Smart Cuts Salon & Spa — Festive Makeover 30% Off')">
+        <!-- Item 5: Kirana & Grocery -->
+        <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Apna Kirana & Supermart — Monthly Kirana Dhamaka')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">💄 Salon & Spa</span>
-            <img src="Gemini_Generated_Image_j36lk8j36lk8j36l.jpg" alt="Smart Cuts Salon Campaign" />
+            <span class="gallery-badge" id="g-badge-5">🛒 किराना व राशन</span>
+            <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Apna Kirana Supermart" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Beauty & Grooming</div>
-            <div class="gallery-title">Festive Makeover Sale</div>
-            <div class="gallery-sub">Smart Cuts Salon & Spa</div>
+            <div class="gallery-cat" id="g-cat-5">किराना व सुपरमार्ट</div>
+            <div class="gallery-title" id="g-title-5">मंथली किराना धमाका ऑफ़र</div>
+            <div class="gallery-sub" id="g-sub-5">अपना किराना व सुपरमार्ट</div>
           </div>
         </div>
 
-        <!-- Item 6 -->
-        <div class="gallery-item" data-cat="festive" onclick="openLightbox('Gemini_Generated_Image_13klsb13klsb13kl.jpg', 'Apna Kirana & Supermart — Monthly Kirana Dhamaka')">
+        <!-- Item 6: Cafe Pizza -->
+        <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Local Cafe — Weekend Offer Buy 1 Get 1 Free')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">🛒 Grocery & Retail</span>
-            <img src="Gemini_Generated_Image_13klsb13klsb13kl.jpg" alt="Apna Kirana Supermart" />
+            <span class="gallery-badge" id="g-badge-6">🍕 कैफे व फ़ास्ट फ़ूड</span>
+            <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe Weekend Pizza Burger BOGO" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Supermarket & Kirana</div>
-            <div class="gallery-title">Monthly Kirana Dhamaka</div>
-            <div class="gallery-sub">Apna Kirana & Supermart</div>
+            <div class="gallery-cat" id="g-cat-6">फास्ट फूड व कैफे</div>
+            <div class="gallery-title" id="g-title-7">बाय 1 गेट 1 फ्री पिज़्ज़ा पार्टी</div>
+            <div class="gallery-sub" id="g-sub-6">लोकल कैफे व लाउंज</div>
           </div>
         </div>
 
-        <!-- Item 7 -->
-        <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('Gemini_Generated_Image_phjfhhphjfhhphjf.jpg', 'Local Cafe — Weekend Offer Buy 1 Get 1 Free')">
+        <!-- Item 7: Samosa & Snacks -->
+        <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png', 'Weekend Snacks Offer — Buy 1 Get 1 Free Samosas')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">🍕 Cafe & Fast Food</span>
-            <img src="Gemini_Generated_Image_phjfhhphjfhhphjf.jpg" alt="Cafe Weekend Pizza Burger BOGO" />
+            <span class="gallery-badge" id="g-badge-7">🥟 रेस्टोरेंट ऑफ़र</span>
+            <img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Weekend BOGO Samosas" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Fast Food & Dining</div>
-            <div class="gallery-title">Buy 1 Get 1 Free Feast</div>
-            <div class="gallery-sub">Local Cafe & Lounge</div>
+            <div class="gallery-cat" id="g-cat-7">रेस्टोरेंट व स्नैक्स</div>
+            <div class="gallery-title" id="g-title-7">वीकेंड समोसा स्पेशल ऑफ़र</div>
+            <div class="gallery-sub" id="g-sub-7">क्रिस्पी समोसा प्लैटर</div>
           </div>
         </div>
 
-        <!-- Item 8 -->
-        <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('Gemini_Generated_Image_gjc6vigjc6vigjc6.jpg', 'Weekend Snacks Offer — Buy 1 Get 1 Free Samosas')">
+        <!-- Item 8: Pharmacy & Medical -->
+        <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Aayush Medical & Pharmacy Store — 24/7 Generic & Healthcare')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">🥟 Restaurant Offer</span>
-            <img src="Gemini_Generated_Image_gjc6vigjc6vigjc6.jpg" alt="Weekend BOGO Samosas" />
+            <span class="gallery-badge" id="g-badge-8">💊 फार्मेसी व दवाएं</span>
+            <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Aayush Pharmacy & Medical Store" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Traditional Dining</div>
-            <div class="gallery-title">Weekend BOGO Snacks Banner</div>
-            <div class="gallery-sub">Crispy Samosa Platter</div>
+            <div class="gallery-cat" id="g-cat-8">मेडिकल व फार्मेसी</div>
+            <div class="gallery-title" id="g-title-8">आयुष मेडिकल व फार्मेसी स्टोर</div>
+            <div class="gallery-sub" id="g-sub-8">24/7 जेनेरिक व जरूरी दवाएं उपलब्ध</div>
           </div>
         </div>
 
-        <!-- Item 9 -->
-        <div class="gallery-item" data-cat="festive dining" onclick="openLightbox('Gemini_Generated_Image_gktfxugktfxugktf.jpg', 'Holi Lal Mishthan — 100% Pure Desi Ghee Sweets')">
+        <!-- Item 9: Electronics & Mobile -->
+        <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Gupta Electronics & Mobiles — Festive Megasale')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">🍮 Pure Desi Ghee</span>
-            <img src="Gemini_Generated_Image_gktfxugktfxugktf.jpg" alt="Pure Desi Ghee Sweets" />
+            <span class="gallery-badge" id="g-badge-9">📱 इलेक्ट्रॉनिक्स व मोबाइल</span>
+            <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics & Mobile Store" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Sweets Branding</div>
-            <div class="gallery-title">100% Pure Ghee Sweets</div>
-            <div class="gallery-sub">Holi Lal Mishthan Bhandar</div>
+            <div class="gallery-cat" id="g-cat-9">मोबाइल व इलेक्ट्रॉनिक्स</div>
+            <div class="gallery-title" id="g-title-9">गुप्ता इलेक्ट्रॉनिक्स फेस्टिव सेल</div>
+            <div class="gallery-sub" id="g-sub-9">स्मार्टफ़ोन, टीवी व होम अप्लायंसेज</div>
           </div>
         </div>
 
-        <!-- Item 10 -->
-        <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('Gemini_Generated_Image_l9usy7l9usy7l9us.jpg', 'Holi Lal Mishthan — Special Evening Samosa Offer')">
+        <!-- Item 10: Pure Desi Ghee Sweets -->
+        <div class="gallery-item landscape" data-cat="dining festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png', 'Shree Mishthan Bhandar — 100% Pure Desi Ghee Sweets')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge">☕ Evening Specials</span>
-            <img src="Gemini_Generated_Image_l9usy7l9usy7l9us.jpg" alt="Evening Samosa Delight" />
+            <span class="gallery-badge" id="g-badge-10">🍮 शुद्ध देसी घी</span>
+            <img src="watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png" alt="Pure Desi Ghee Sweets" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat">Snacks & Cafe</div>
-            <div class="gallery-title">Special Evening Samosa</div>
-            <div class="gallery-sub">Holi Lal Mishthan Delicacy</div>
+            <div class="gallery-cat" id="g-cat-10">देसी घी मिष्ठान</div>
+            <div class="gallery-title" id="g-title-10">100% शुद्ध देसी घी मिठाई</div>
+            <div class="gallery-sub" id="g-sub-10">श्री मिष्ठान भंडार स्पेशल</div>
           </div>
         </div>
 
@@ -4422,29 +5074,29 @@
     <div class="container">
 
       <div class="section-header">
-        <div class="section-tag">✦ Seamless Workflow</div>
-        <h2 class="section-heading">How We Grow Your Store</h2>
-        <p class="section-desc">Get customized ready-to-post creatives for your business in 3 simple steps.</p>
+        <div class="section-tag" id="process-tag">✦ आसान प्रक्रिया</div>
+        <h2 class="section-heading" id="process-heading">अपनी दुकान को ऑनलाइन कैसे बढ़ाएं</h2>
+        <p class="section-desc" id="process-desc">सिर्फ 3 आसान स्टेप्स में अपनी दुकान के लिए 4K डिज़ाइन्स पाएं।</p>
       </div>
 
       <div class="process-grid">
 
         <div class="process-card">
           <div class="process-step">01</div>
-          <h3>Select Your Pack</h3>
-          <p>Choose between the <strong>Starter Pack (₹499)</strong> or the <strong>Premium Pack (₹799)</strong> with promo videos.</p>
+          <h3 id="process-step-1-title">पैक चुनें</h3>
+          <p id="process-step-1-desc">Starter Pack (₹499) या Premium Pack (₹799) प्रोमो वीडियो के साथ चुनें।</p>
         </div>
 
         <div class="process-card">
           <div class="process-step">02</div>
-          <h3>Send Shop Details</h3>
-          <p>Share your shop name, contact number, festival discount offers, or product photos directly on WhatsApp.</p>
+          <h3 id="process-step-2-title">दुकान की जानकारी भेजें</h3>
+          <p id="process-step-2-desc">अपनी दुकान का नाम, फ़ोन नंबर, ऑफ़र या फ़ोटो WhatsApp पर शेयर करें।</p>
         </div>
 
         <div class="process-card">
           <div class="process-step">03</div>
-          <h3>Receive & Post in 24h</h3>
-          <p>Receive your ultra HD creatives and videos formatted for WhatsApp status, reels, and Instagram posts.</p>
+          <h3 id="process-step-3-title">24 घंटे में पाएं और पोस्ट करें</h3>
+          <p id="process-step-3-desc">24 घंटे में WhatsApp स्टेटस और इंस्टाग्राम रील्स के लिए तैयार 4K डिज़ाइन्स पाएं।</p>
         </div>
 
       </div>
@@ -4457,23 +5109,23 @@
     <div class="container">
 
       <div class="section-header">
-        <div class="section-tag">✦ Verified Testimonials</div>
-        <h2 class="section-heading">Loved by Local Business Owners</h2>
-        <p class="section-desc">See what store owners say after launching their campaigns with Grow Online Shop.</p>
+        <div class="section-tag" id="reviews-tag">✦ संतुष्ट ग्राहक</div>
+        <h2 class="section-heading" id="reviews-heading">स्थानीय दुकानदारों का भरोसा</h2>
+        <p class="section-desc" id="reviews-desc">ग्रो ऑनलाइन शॉप के साथ कैंपेन शुरू करने के बाद दुकानदारों की प्रतिक्रिया देखें।</p>
       </div>
 
-      <div class="reviews-grid">
+            <div class="reviews-grid">
 
         <div class="review-card">
           <div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Rakshabandhan ke time pe ₹499 pack liya tha. Status lagate hi customers ke calls aane lage sweets booking ke liye. Quality lajawab hai!"</p>
+            <p class="review-text"><span id="review-1-text">"रक्षाबंधन के समय ₹499 वाला पैक लिया था। स्टेटस लगाते ही ग्राहकों के मिठाई बुकिंग के फ़ोन आने लगे। क्वालिटी लाजवाब है!"</span></p>
           </div>
           <div class="reviewer-meta">
-            <div class="reviewer-avatar">H</div>
+            <div class="reviewer-avatar">S</div>
             <div class="reviewer-info">
-              <strong>Holi Lal Mishthan</strong>
-              <span>Dibiyapur · Sweets & Dairy</span>
+              <strong>Shree Mishthan Bhandar</strong>
+              <span>Auraiya · Sweets & Dairy</span>
             </div>
           </div>
         </div>
@@ -4481,13 +5133,13 @@
         <div class="review-card">
           <div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Premium ₹799 pack was pure value! The 2 promo videos got over 15,000 views on Instagram reels and brought dozens of bridal inquiries."</p>
+            <p class="review-text"><span id="review-2-text">"दिबियापुर में हमारी किराना दुकान के फेस्टिव ऑफ़र पोस्टर्स 24 घंटे में मिल गए। स्टेटस लगाते ही ग्राहकों का बहुत अच्छा रिस्पॉन्स मिला!"</span></p>
           </div>
           <div class="reviewer-meta">
-            <div class="reviewer-avatar">S</div>
+            <div class="reviewer-avatar">A</div>
             <div class="reviewer-info">
-              <strong>Smart Cuts Salon</strong>
-              <span>Salon & Makeover Studio</span>
+              <strong>Apna Kirana Store</strong>
+              <span>Dibiyapur · Grocery & Supermart</span>
             </div>
           </div>
         </div>
@@ -4495,13 +5147,27 @@
         <div class="review-card">
           <div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Jewellery designs look royal and super premium. Grow Online Shop delivers exactly what they promise in less than 24 hours. Highly recommended!"</p>
+            <p class="review-text"><span id="review-3-text">"इटावा में फेस्टिव सेल के लिए ₹799 वाला प्रीमियम पैक लिया था। HD प्रोमो वीडियो और बैनर से दुकान पर बिक्री काफी बढ़ गई!"</span></p>
           </div>
           <div class="reviewer-meta">
-            <div class="reviewer-avatar">S</div>
+            <div class="reviewer-avatar">G</div>
             <div class="reviewer-info">
-              <strong>Sri Jewellers</strong>
-              <span>Gold & Diamond Retail</span>
+              <strong>Gupta Electronics</strong>
+              <span>Etawah · Mobile & Electronics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text"><span id="review-4-text">"कानपुर में हमारी गारमेंट्स शॉप के WhatsApp स्टेटस और फेस्टिव पोस्टर्स 24 घंटे में रेडी हो गए। डिज़ाइन क्वालिटी बहुत शानदार है!"</span></p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">K</div>
+            <div class="reviewer-info">
+              <strong>Kanpur Fashion Hub</strong>
+              <span>Kanpur · Apparel & Fashion</span>
             </div>
           </div>
         </div>
@@ -4516,50 +5182,50 @@
     <div class="container">
 
       <div class="section-header">
-        <div class="section-tag">✦ Got Questions?</div>
-        <h2 class="section-heading">Frequently Asked Questions</h2>
-        <p class="section-desc">Everything you need to know about our creative packages.</p>
+        <div class="section-tag" id="faq-tag">✦ आपके सवाल</div>
+        <h2 class="section-heading" id="faq-heading">अक्सर पूछे जाने वाले सवाल</h2>
+        <p class="section-desc" id="faq-desc">हमारे क्रिएटिव पैक्स से जुड़े सभी ज़रूरी सवालों के जवाब।</p>
       </div>
 
       <div class="faq-list">
 
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>How fast will I receive my designs?</span>
+            <span id="faq-q-1">मुझे मेरे डिज़ाइन कितने समय में मिलेंगे?</span>
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            All creatives are delivered directly on WhatsApp within <strong>24 hours</strong> of receiving your shop name and offer details. Premium pack orders receive top priority delivery.
+            <span id="faq-a-1">दुकान का नाम और जानकारी भेजने के <strong>24 घंटे के अंदर</strong> सभी डिज़ाइन्स सीधे आपके WhatsApp पर डिलीवर कर दिए जाते हैं। प्रीमियम पैक को प्राथमिकता दी जाती है।</span>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Can I customize the designs with my shop name & phone number?</span>
+            <span id="faq-q-2">क्या डिज़ाइन्स में मेरी दुकान का नाम और फ़ोन नंबर जुड़ेगा?</span>
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            Yes, absolutely! In both the Starter and Premium packs, all designs are branded with your shop name, logo, phone number, address, and special discount offers.
+            <span id="faq-a-2">हाँ, बिल्कुल! स्टार्टर और प्रीमियम दोनों पैक्स में सभी पोस्टर्स पर आपकी दुकान का नाम, लोगो, फ़ोन नंबर, पता और विशेष ऑफ़र जोड़े जाते हैं।</span>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What is the difference between Starter and Premium Pack?</span>
+            <span id="faq-q-3">स्टार्टर और प्रीमियम पैक में क्या अंतर है?</span>
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            The Starter Pack (₹499) gives you 8 custom photos + 8 status designs in final ready-to-post formats. The Premium Pack (₹799) includes <strong>2 cinematic promo videos/reels</strong>, editable template files, and VIP support.
+            <span id="faq-a-3">स्टार्टर पैक (₹499) में 4 कस्टम फ़ोटो + 4 स्टेटस डिज़ाइन्स मिलते हैं। प्रीमियम पैक (₹799) में <strong>2 सिनेमैटिक प्रोमो वीडियो/रील्स</strong>, 8 फ़ोटो + 8 स्टेटस और एडिटेबल फ़ाइलें मिलती हैं।</span>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>How do I pay and start my order?</span>
+            <span id="faq-q-4">पेमेंट कैसे करें और ऑर्डर कैसे शुरू करें?</span>
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-answer">
-            Click on any "Get Pack" button to open WhatsApp with a pre-filled message. You can pay via UPI (GPay, PhonePe, Paytm) after confirming your details with our team.
+            <span id="faq-a-4">किसी भी "ऑर्डर करें" बटन पर क्लिक करके WhatsApp चैट खोलें। आप UPI (GPay, PhonePe, Paytm) से आसानी से पेमेंट कर सकते हैं।</span>
           </div>
         </div>
 
@@ -4584,11 +5250,11 @@
               <span class="brand-badge">Defy Gravity, Grow Online</span>
             </div>
           </div>
-          <p>Helping local retail shops, restaurants, jewelers, and service stores scale their brand presence with high-converting social media creatives.</p>
+          <p id="footer-desc">स्थानीय रिटेल दुकानों, रेस्टोरेंट्स, ज्वेलर्स और सर्विस स्टोर्स को सोशल मीडिया क्रिएटिव्स के ज़रिए ऑनलाइन ग्रो करने में मदद करते हैं।</p>
         </div>
 
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h4 id="footer-quick-links-title">क्विक लिंक्स</h4>
           <ul class="footer-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#pricing">Packages</a></li>
@@ -4598,7 +5264,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Packages</h4>
+          <h4 id="footer-packages-title">पैकेज</h4>
           <ul class="footer-links">
             <li><a href="#pricing">Starter Pack (₹499)</a></li>
             <li><a href="#pricing">Premium Pack (₹799)</a></li>
@@ -4608,11 +5274,11 @@
         </div>
 
         <div class="footer-col">
-          <h4>Instant Support</h4>
+          <h4 id="footer-support-title">तुरंत सहायता</h4>
           <div class="footer-contact-box">
-            <p>Ready to launch your festive campaign today?</p>
+            <p id="footer-support-p">क्या आप आज ही अपना फेस्टिव कैंपेन शुरू करने के लिए तैयार हैं?</p>
             <a href="https://wa.me/?text=Hello%20Grow%20Online%20Store!%20I%20want%20to%20order%20creative%20designs." target="_blank" class="btn-footer-chat">
-              <span>💬 Chat on WhatsApp</span>
+              <span id="btn-footer-chat-txt">💬 WhatsApp पर बात करें</span>
             </a>
           </div>
         </div>
@@ -4632,7 +5298,7 @@
 <!-- STICKY WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/?text=Hello%20Grow%20Online%20Store!%20I%20want%20to%20order%20creative%20designs%20for%20my%20business." target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
   <span>💬</span>
-  <span>Order on WhatsApp</span>
+  <span id="floating-wa-txt">WhatsApp पर ऑर्डर करें</span>
 </a>
 
 <!-- LIGHTBOX MODAL -->
@@ -4890,67 +5556,30 @@ window.setPlanDuration = function(dur) {
     if (elH) elH.textContent = String(h).padStart(2, '0');
     if (elM) elM.textContent = String(m).padStart(2, '0');
     if (elS) elS.textContent = String(s).padStart(2, '0');
+
+    // Update Hero Timer as well
+    const htD = document.getElementById('ht-days');
+    const htH = document.getElementById('ht-hours');
+    const htM = document.getElementById('ht-mins');
+    const htS = document.getElementById('ht-secs');
+    if (htD) htD.textContent = String(d).padStart(2, '0');
+    if (htH) htH.textContent = String(h).padStart(2, '0');
+    if (htM) htM.textContent = String(m).padStart(2, '0');
+    if (htS) htS.textContent = String(s).padStart(2, '0');
+
+    // Update Card Mini Timers
+    const cardTimerTxt = `${d}d : ${String(h).padStart(2, '0')}h : ${String(m).padStart(2, '0')}m शेष`;
+    const scT = document.getElementById('scard-timer-val');
+    const pcT = document.getElementById('pcard-timer-val');
+    if (scT) scT.textContent = cardTimerTxt;
+    if (pcT) pcT.textContent = cardTimerTxt;
   }
   setInterval(tick, 1000);
   tick();
 })();
 
 
-/* ===== STARFIELD CANVAS ===== */
-(function() {
-  const canvas = document.getElementById('space-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, stars = [];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    init();
-  }
-
-  function init() {
-    stars = [];
-    const count = Math.floor((W * H) / 3200);
-    for (let i = 0; i < count; i++) {
-      stars.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: Math.random() * 1.5 + 0.3,
-        speed: Math.random() * 0.005 + 0.002,
-        phase: Math.random() * Math.PI * 2,
-        color: Math.random() > 0.7 ? '#a855f7' : (Math.random() > 0.45 ? '#00e5ff' : '#ffffff')
-      });
-    }
-  }
-
-  let t = 0;
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    t += 0.01;
-
-    for (const s of stars) {
-      const a = 0.3 + 0.7 * Math.abs(Math.sin(t * s.speed * 15 + s.phase));
-      ctx.globalAlpha = a;
-      ctx.fillStyle = s.color;
-      if (s.r > 1.1 && s.color !== '#ffffff') {
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = s.color;
-      } else {
-        ctx.shadowBlur = 0;
-      }
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-    ctx.shadowBlur = 0;
-    requestAnimationFrame(render);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  render();
-})();
+/* ===== STARFIELD CANVAS REMOVED FOR CLEAN MODERN GRADIENT ===== */
 
 /* ===== NAVBAR SCROLL EFFECT ===== */
 window.addEventListener('scroll', () => {
@@ -5015,7 +5644,7 @@ function openLightbox(src, title) {
 }
 
 function closeLightbox(e) {
-  if (e.target.id === 'lightbox-modal') {
+  if (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-inner')) {
     document.getElementById('lightbox-modal').style.display = 'none';
   }
 }
@@ -5174,6 +5803,435 @@ window.scrollToStarterPack = function(e) {
     }, 1800);
   }
 };
+
+
+/* ===== HERO POSTER INTERACTIVE SWITCHER & AUTO-ROTATION ===== */
+window.switchHeroPoster = function(src, category, thumbElem) {
+  const mainImg = document.getElementById('hero-featured-poster');
+  const catTag = document.getElementById('poster-category-tag');
+  if (mainImg) {
+    mainImg.style.opacity = '0.3';
+    setTimeout(() => {
+      mainImg.src = src;
+      mainImg.style.opacity = '1';
+    }, 150);
+  }
+  if (catTag && category) {
+    catTag.textContent = category;
+  }
+  if (thumbElem) {
+    document.querySelectorAll('.mockup-thumb').forEach(t => t.classList.remove('active'));
+    thumbElem.classList.add('active');
+  }
+};
+
+// Auto cycle posters every 3.5s
+(function() {
+    const heroPosters = [
+    { src: 'watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', cat: '🍬 रक्षाबंधन स्पेशल मिठाई' },
+    { src: 'watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', cat: '💎 रॉयल गोल्ड व ज्वेलरी' },
+    { src: 'watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', cat: '👗 कपड़े व फेस्टिव फैशन' },
+    { src: 'watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', cat: '🛒 किराना व सुपरमार्ट' },
+    { src: 'watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', cat: '🍕 कैफे व फ़ास्ट फ़ूड' }
+  ];
+  let currIdx = 0;
+  setInterval(() => {
+    currIdx = (currIdx + 1) % heroPosters.length;
+    const thumbs = document.querySelectorAll('.mockup-thumb');
+    const targetThumb = thumbs[currIdx];
+    window.switchHeroPoster(heroPosters[currIdx].src, heroPosters[currIdx].cat, targetThumb);
+  }, 3500);
+})();
+
+
+/* ===== ROBUST GALLERY IMAGE FALLBACK HANDLER ===== */
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.gallery-thumb-wrap img, .showcase-poster-item img').forEach(img => {
+    img.onerror = function() {
+      if (this.src.endsWith('.png')) {
+        this.src = this.src.replace('.png', '.jpg');
+      } else if (this.src.endsWith('.jpg')) {
+        this.src = this.src.replace('.jpg', '.png');
+      }
+    };
+  });
+});
+
+
+/* ===== COMPREHENSIVE MULTI-LANGUAGE SYSTEM (100% FULL-PAGE HINDI & ENGLISH) ===== */
+window.currentLang = 'hi';
+
+const translations = {
+  hi: {
+    // Navbar
+    'nav-link-pricing': 'पैकेज और कीमतें',
+    'nav-link-portfolio': 'हमारा काम',
+    'nav-link-workflow': 'कैसे काम करता है',
+    'nav-link-contact': 'संपर्क करें',
+    'nav-cta-btn': '🚀 पैक्स देखें',
+
+    // Hero
+    'hero-badge-txt': 'भारत की #1 डिजिटल ग्रोथ एजेंसी · GOS',
+    'hero-title-line1': 'अपनी दुकान को दें',
+    'hero-title-highlight': 'डिजिटल पहचान',
+    'hero-desc-txt': '4K WhatsApp स्टेटस, फ़ेस्टिवल पोस्टर्स और HD प्रोमो वीडियोज़ — 24 घंटे में रेडी!',
+    'hero-bullet-1': '⚡ 24-घंटे एक्सप्रेस डिलीवरी',
+    'hero-bullet-2': '🎨 100% कस्टम नाम व नंबर',
+    'hero-bullet-3': '🔥 सिर्फ ₹499 से शुरू',
+    'hero-cta-starter-txt': 'आज ही ऑर्डर करें — ₹499 से शुरू',
+    'hero-cta-wa-txt': 'WhatsApp पर बात करें',
+    'hero-trust-cnt': '🔥 100+ स्थानीय दुकानें ऑनलाइन ग्रो कर रही हैं',
+    'hero-deal-off-badge': '50% छूट 🔥',
+    'ht-lbl-d': 'दिन',
+    'ht-lbl-h': 'घंटे',
+    'ht-lbl-m': 'मिनट',
+    'ht-lbl-s': 'सेकंड',
+
+    // Pricing Header & Timer
+    'pricing-sub-tag': '🎀 सीमित समय के लिए फेस्टिव ऑफ़र',
+    'pricing-main-heading': 'रक्षाबंधन स्पेशल ऑफर्स',
+    'pricing-main-desc': 'स्थानीय रिटेल दुकानों, मिठाई स्टोर्स, कैफे और ज्वेलर्स के लिए विशेष 3-दिवसीय फेस्टिव छूट।',
+    'timer-badge-flame': '🔥 सिर्फ 3 दिनों के लिए',
+    'timer-title-head': 'रक्षाबंधन महा ऑफ़र — जल्द समाप्त होगा!',
+    'timer-title-sub': '₹499 स्टार्टर और ₹799 प्रीमियम दोनों पैक्स पर स्पेशल फ्लैट डिस्काउंट',
+    'label-days': 'दिन',
+    'label-hours': 'घंटे',
+    'label-mins': 'मिनट',
+    'label-secs': 'सेकंड',
+    'dur-1m-lbl': '1 महीने का प्लान',
+    'dur-3m-lbl': '3 महीने का प्लान',
+
+    // Showcase Gallery Header
+    'showcase-badge-glow': '✨ लाइव डिज़ाइन गैलरी',
+    'showcase-title-main': 'पैक्स में शामिल पोस्टर्स व वीडियोज',
+    'showcase-desc-sub': 'आपकी दुकान के लिए तैयार होने वाले पोस्टर्स की लाइव झलक:',
+    'showcase-footer-hint': '🔍 किसी भी पोस्टर पर क्लिक करके बड़ा देखें (Click to Zoom)',
+
+    // Starter Card
+    'starter-title-text': 'स्टार्टर पैक',
+    'starter-strike-val': 'वास्तविक मूल्य ₹999',
+    'starter-sample-lbl': 'शामिल सैम्पल प्रकार:',
+    'starter-feat-3': '<span class="bullet-check-icon">✓</span> <span><strong>रक्षाबंधन एक्सक्लूसिव</strong> डिस्काउंटेड कीमत</span>',
+    'starter-feat-4': '<span class="bullet-check-icon">✓</span> <span>अल्ट्रा एचडी क्लीन फ्लैट वेक्टर रेजोल्यूशन</span>',
+    'starter-feat-5': '<span class="bullet-info-icon">ⓘ</span> <span>नॉन-एडिटेबल फाइनल रेडी फाइल्स</span>',
+
+    // Premium Card
+    'premium-top-badge': '⭐ सबसे लोकप्रिय',
+    'premium-offer-pill': '🎀 रक्षाबंधन महा ऑफ़र',
+    'premium-urgency-lbl': 'स्पेशल ऑफ़र:',
+    'pcard-lbl-1m': '1 महीने का प्लान',
+    'pcard-lbl-3m': '3 महीने का कॉम्बो',
+    'premium-title-text': 'ग्रोथ प्रो पैक',
+    'premium-strike-val': 'वास्तविक मूल्य ₹1499',
+    'premium-sample-lbl': 'शामिल सैम्पल्स व प्रोमो वीडियोज:',
+    'premium-feat-3': '<span class="bullet-check-icon">✓</span> <span><strong>एडिटेबल फोटोज</strong> व सोर्स टेम्पलेट एक्सेस</span>',
+    'premium-feat-4': '<span class="bullet-check-icon">✓</span> <span>दुकान के नाम व पते के साथ फुल ब्रांडिंग</span>',
+    'premium-feat-5': '<span class="bullet-check-icon">✓</span> <span><strong>प्राथमिकता डिलीवरी</strong> 24 घंटे के अंदर</span>',
+    'premium-feat-6': '<span class="bullet-check-icon">✓</span> <span>रिवीजन के लिए डेडिकेटेड व्हाट्सएप सपोर्ट</span>',
+
+    // Portfolio Section
+    'gallery-tag': '✦ हमारा असली काम',
+    'gallery-heading': 'ग्रो ऑनलाइन शॉप गैलरी',
+    'gallery-desc': 'मिठाई, ज्वेलरी, फैशन, कैफे और किराना स्टोर्स के लिए हमारे द्वारा तैयार 4K डिज़ाइन्स देखें।',
+    'filter-btn-all': 'सभी डिज़ाइन्स (10+)',
+    'filter-btn-festive': 'त्यौहार व मिठाई',
+    'filter-btn-fashion': 'फैशन व ज्वेलरी',
+    'filter-btn-dining': 'कैफे व रेस्टोरेंट',
+                // Gallery Cards 1-10 (100% Accurately Matched)
+    'g-badge-1': '🍬 Festive Offer',
+    'g-cat-1': 'Sweets & Mishthan',
+    'g-title-1': 'Rakshabandhan Sweets Sale',
+    'g-sub-1': 'Shree Mishthan Bhandar Series',
+
+    'g-badge-2': '💎 Luxury & Gold',
+    'g-cat-2': 'Jewellery & Ornaments',
+    'g-title-2': 'Royal Festive Jewellery',
+    'g-sub-2': 'Sri Jewellers Gold & Diamond',
+
+    'g-badge-3': '👗 Clothing Sale',
+    'g-cat-3': 'Apparel & Fashion',
+    'g-title-3': 'Elite Fashion Festive Sale (90% Off)',
+    'g-sub-3': 'Multi-Category Product Grid',
+
+    'g-badge-4': '💄 Salon & Spa',
+    'g-cat-4': 'Beauty & Grooming',
+    'g-title-4': 'Festive Makeover Sale (30% Off)',
+    'g-sub-4': 'Smart Cuts Salon & Spa',
+
+    'g-badge-5': '🛒 Grocery & Retail',
+    'g-cat-5': 'Supermarket & Kirana',
+    'g-title-5': 'Monthly Kirana Dhamaka',
+    'g-sub-5': 'Apna Kirana & Supermart',
+
+    'g-badge-6': '🍕 Cafe & Fast Food',
+    'g-cat-6': 'Fast Food & Dining',
+    'g-title-6': 'Buy 1 Get 1 Free Feast',
+    'g-sub-6': 'Local Cafe & Lounge',
+
+    'g-badge-7': '🥟 Restaurant Offer',
+    'g-cat-7': 'Traditional Dining',
+    'g-title-7': 'Weekend BOGO Snacks Banner',
+    'g-sub-7': 'Crispy Samosa Platter',
+
+    'g-badge-8': '💊 Pharmacy & Meds',
+    'g-cat-8': 'Medical & Healthcare',
+    'g-title-8': 'Aayush Medical & Pharmacy',
+    'g-sub-8': '24/7 Generic Medicines & Healthcare',
+
+    'g-badge-9': '📱 Electronics & Mobile',
+    'g-cat-9': 'Mobiles & Electronics',
+    'g-title-9': 'Gupta Electronics Festive Sale',
+    'g-sub-9': 'Smartphones, TV & Home Appliances',
+
+    'g-badge-10': '🍮 Pure Desi Ghee',
+    'g-cat-10': 'Traditional Sweets',
+    'g-title-10': '100% Pure Ghee Sweets',
+    'g-sub-10': 'Shree Mishthan Bhandar Special',
+
+    // Process Section
+    'process-tag': '✦ आसान प्रक्रिया',
+    'process-heading': 'अपनी दुकान को ऑनलाइन कैसे बढ़ाएं',
+    'process-desc': 'सिर्फ 3 आसान स्टेप्स में अपनी दुकान के लिए 4K डिज़ाइन्स पाएं।',
+    'process-step-1-title': 'पैक चुनें',
+    'process-step-1-desc': 'Starter Pack (₹499) या Premium Pack (₹799) प्रोमो वीडियो के साथ चुनें।',
+    'process-step-2-title': 'दुकान की जानकारी भेजें',
+    'process-step-2-desc': 'अपनी दुकान का नाम, फ़ोन नंबर, ऑफ़र या फ़ोटो WhatsApp पर शेयर करें।',
+    'process-step-3-title': '24 घंटे में पाएं और पोस्ट करें',
+    'process-step-3-desc': '24 घंटे में WhatsApp स्टेटस और इंस्टाग्राम रील्स के लिए तैयार 4K डिज़ाइन्स पाएं।',
+
+    // Reviews Section
+    'reviews-tag': '✦ संतुष्ट ग्राहक',
+    'reviews-heading': 'स्थानीय दुकानदारों का भरोसा',
+    'reviews-desc': 'ग्रो ऑनलाइन शॉप के साथ कैंपेन शुरू करने के बाद दुकानदारों की प्रतिक्रिया देखें।',
+    'review-1-text': '"रक्षाबंधन के समय ₹499 वाला पैक लिया था। स्टेटस लगाते ही ग्राहकों के मिठाई बुकिंग के फ़ोन आने लगे। क्वालिटी लाजवाब है!"',
+    'review-2-text': '"दिबियापुर में हमारी किराना दुकान के फेस्टिव ऑफ़र पोस्टर्स 24 घंटे में मिल गए। स्टेटस लगाते ही ग्राहकों का बहुत अच्छा रिस्पॉन्स मिला!"',
+    'review-3-text': '"इटावा में फेस्टिव सेल के लिए ₹799 वाला प्रीमियम पैक लिया था। HD प्रोमो वीडियो और बैनर से दुकान पर बिक्री काफी बढ़ गई!"',
+    'review-4-text': '"कानपुर में हमारी गारमेंट्स शॉप के WhatsApp स्टेटस और फेस्टिव पोस्टर्स 24 घंटे में रेडी हो गए। डिज़ाइन क्वालिटी बहुत शानदार है!"',
+
+    // FAQ Section
+    'faq-tag': '✦ आपके सवाल',
+    'faq-heading': 'अक्सर पूछे जाने वाले सवाल',
+    'faq-desc': 'हमारे क्रिएटिव पैक्स से जुड़े सभी ज़रूरी सवालों के जवाब।',
+    'faq-q-1': 'मुझे मेरे डिज़ाइन कितने समय में मिलेंगे?',
+    'faq-a-1': 'दुकान का नाम और जानकारी भेजने के <strong>24 घंटे के अंदर</strong> सभी डिज़ाइन्स सीधे आपके WhatsApp पर डिलीवर कर दिए जाते हैं। प्रीमियम पैक को प्राथमिकता दी जाती है।',
+    'faq-q-2': 'क्या डिज़ाइन्स में मेरी दुकान का नाम और फ़ोन नंबर जुड़ेगा?',
+    'faq-a-2': 'हाँ, बिल्कुल! स्टार्टर और प्रीमियम दोनों पैक्स में सभी पोस्टर्स पर आपकी दुकान का नाम, लोगो, फ़ोन नंबर, पता और विशेष ऑफ़र जोड़े जाते हैं।',
+    'faq-q-3': 'स्टार्टर और प्रीमियम पैक में क्या अंतर है?',
+    'faq-a-3': 'स्टार्टर पैक (₹499) में 4 कस्टम फ़ोटो + 4 स्टेटस डिज़ाइन्स मिलते हैं। प्रीमियम पैक (₹799) में <strong>2 सिनेमैटिक प्रोमो वीडियो/रील्स</strong>, 8 फ़ोटो + 8 स्टेटस और एडिटेबल फ़ाइलें मिलती हैं।',
+    'faq-q-4': 'पेमेंट कैसे करें और ऑर्डर कैसे शुरू करें?',
+    'faq-a-4': 'किसी भी "ऑर्डर करें" बटन पर क्लिक करके WhatsApp चैट खोलें। आप UPI (GPay, PhonePe, Paytm) से आसानी से पेमेंट कर सकते हैं।',
+
+    // Footer
+    'footer-desc': 'स्थानीय रिटेल दुकानों, रेस्टोरेंट्स, ज्वेलर्स और सर्विस स्टोर्स को सोशल मीडिया क्रिएटिव्स के ज़रिए ऑनलाइन ग्रो करने में मदद करते हैं।',
+    'footer-quick-links-title': 'क्विक लिंक्स',
+    'footer-packages-title': 'पैकेज',
+    'footer-support-title': 'तुरंत सहायता',
+    'footer-support-p': 'क्या आप आज ही अपना फेस्टिव कैंपेन शुरू करने के लिए तैयार हैं?',
+    'btn-footer-chat-txt': '💬 WhatsApp पर बात करें',
+    'floating-wa-txt': 'WhatsApp पर ऑर्डर करें'
+  },
+  en: {
+    // Navbar
+    'nav-link-pricing': 'Pricing',
+    'nav-link-portfolio': 'Our Work',
+    'nav-link-workflow': 'How It Works',
+    'nav-link-contact': 'Contact',
+    'nav-cta-btn': '🚀 View Packs',
+
+    // Hero
+    'hero-badge-txt': "India's #1 Digital Growth Agency · GOS",
+    'hero-title-line1': 'Give Your Store a',
+    'hero-title-highlight': 'Digital Identity',
+    'hero-desc-txt': '4K WhatsApp Status, Festival Posters & HD Promo Videos — Ready in 24 Hours!',
+    'hero-bullet-1': '⚡ 24h Express Delivery',
+    'hero-bullet-2': '🎨 100% Custom Name & Phone',
+    'hero-bullet-3': '🔥 Starts from only ₹499',
+    'hero-cta-starter-txt': 'Order Today — Starts at ₹499',
+    'hero-cta-wa-txt': 'Chat on WhatsApp',
+    'hero-trust-cnt': '🔥 100+ Local Stores Scaling Online',
+    'hero-deal-off-badge': '50% OFF 🔥',
+    'ht-lbl-d': 'd',
+    'ht-lbl-h': 'h',
+    'ht-lbl-m': 'm',
+    'ht-lbl-s': 's',
+
+    // Pricing Header & Timer
+    'pricing-sub-tag': '🎀 Limited Time Festive Offer',
+    'pricing-main-heading': 'Rakshabandhan Special Offers',
+    'pricing-main-desc': 'Exclusive 3-day festival discounts for local retail stores, sweet shops, cafes & jewelers.',
+    'timer-badge-flame': '🔥 Only for 3 Days',
+    'timer-title-head': 'Rakshabandhan Mega Offer — Ending Soon!',
+    'timer-title-sub': 'Special flat discount on both ₹499 Starter & ₹799 Premium packs',
+    'label-days': 'Days',
+    'label-hours': 'Hours',
+    'label-mins': 'Mins',
+    'label-secs': 'Secs',
+    'dur-1m-lbl': '1 Month Plan',
+    'dur-3m-lbl': '3 Months Plan',
+
+    // Showcase Gallery Header
+    'showcase-badge-glow': '✨ Live Design Gallery',
+    'showcase-title-main': 'Posters & Videos Included in Packs',
+    'showcase-desc-sub': 'Live preview of premium designs crafted for your business:',
+    'showcase-footer-hint': '🔍 Click any poster to view fullscreen (Click to Zoom)',
+
+    // Starter Card
+    'starter-title-text': 'Starter Pack',
+    'starter-strike-val': 'Real Value ₹999',
+    'starter-sample-lbl': 'Included sample formats:',
+    'starter-feat-3': '<span class="bullet-check-icon">✓</span> <span><strong>Rakshabandhan Exclusive</strong> discounted pricing</span>',
+    'starter-feat-4': '<span class="bullet-check-icon">✓</span> <span>Ultra HD Clean Flat Vector Resolution</span>',
+    'starter-feat-5': '<span class="bullet-info-icon">ⓘ</span> <span>Non-editable final ready-to-post files</span>',
+
+    // Premium Card
+    'premium-top-badge': '⭐ Most Popular',
+    'premium-offer-pill': '🎀 Festive Mega Deal',
+    'premium-urgency-lbl': 'Special Offer:',
+    'pcard-lbl-1m': '1 Month Plan',
+    'pcard-lbl-3m': '3 Months Combo',
+    'premium-title-text': 'Growth Pro Pack',
+    'premium-strike-val': 'Real Value ₹1499',
+    'premium-sample-lbl': 'Included samples & promo reels:',
+    'premium-feat-3': '<span class="bullet-check-icon">✓</span> <span><strong>Editable Photos</strong> & source template access</span>',
+    'premium-feat-4': '<span class="bullet-check-icon">✓</span> <span>Full shop branding with custom address & phone</span>',
+    'premium-feat-5': '<span class="bullet-check-icon">✓</span> <span><strong>Priority Delivery</strong> within 24 hours</span>',
+    'premium-feat-6': '<span class="bullet-check-icon">✓</span> <span>Dedicated WhatsApp support for instant revisions</span>',
+
+    // Portfolio Section
+    'gallery-tag': '✦ Our Real Work',
+    'gallery-heading': 'Grow Online Shop Gallery',
+    'gallery-desc': 'Look through high-definition campaigns we created for real sweets shops, jewellers, fashion outlets, cafes, and supermarkets.',
+    'filter-btn-all': 'All Creatives (10+)',
+    'filter-btn-festive': 'Festive & Sweets',
+    'filter-btn-fashion': 'Fashion & Luxury',
+    'filter-btn-dining': 'Cafes & Food',
+                // Gallery Cards 1-10 (100% Accurately Matched)
+    'g-badge-1': '🍬 Festive Offer',
+    'g-cat-1': 'Sweets & Mishthan',
+    'g-title-1': 'Rakshabandhan Sweets Sale',
+    'g-sub-1': 'Shree Mishthan Bhandar Series',
+
+    'g-badge-2': '💎 Luxury & Gold',
+    'g-cat-2': 'Jewellery & Ornaments',
+    'g-title-2': 'Royal Festive Jewellery',
+    'g-sub-2': 'Sri Jewellers Gold & Diamond',
+
+    'g-badge-3': '👗 Clothing Sale',
+    'g-cat-3': 'Apparel & Fashion',
+    'g-title-3': 'Elite Fashion Festive Sale (90% Off)',
+    'g-sub-3': 'Multi-Category Product Grid',
+
+    'g-badge-4': '💄 Salon & Spa',
+    'g-cat-4': 'Beauty & Grooming',
+    'g-title-4': 'Festive Makeover Sale (30% Off)',
+    'g-sub-4': 'Smart Cuts Salon & Spa',
+
+    'g-badge-5': '🛒 Grocery & Retail',
+    'g-cat-5': 'Supermarket & Kirana',
+    'g-title-5': 'Monthly Kirana Dhamaka',
+    'g-sub-5': 'Apna Kirana & Supermart',
+
+    'g-badge-6': '🍕 Cafe & Fast Food',
+    'g-cat-6': 'Fast Food & Dining',
+    'g-title-6': 'Buy 1 Get 1 Free Feast',
+    'g-sub-6': 'Local Cafe & Lounge',
+
+    'g-badge-7': '🥟 Restaurant Offer',
+    'g-cat-7': 'Traditional Dining',
+    'g-title-7': 'Weekend BOGO Snacks Banner',
+    'g-sub-7': 'Crispy Samosa Platter',
+
+    'g-badge-8': '💊 Pharmacy & Meds',
+    'g-cat-8': 'Medical & Healthcare',
+    'g-title-8': 'Aayush Medical & Pharmacy',
+    'g-sub-8': '24/7 Generic Medicines & Healthcare',
+
+    'g-badge-9': '📱 Electronics & Mobile',
+    'g-cat-9': 'Mobiles & Electronics',
+    'g-title-9': 'Gupta Electronics Festive Sale',
+    'g-sub-9': 'Smartphones, TV & Home Appliances',
+
+    'g-badge-10': '🍮 Pure Desi Ghee',
+    'g-cat-10': 'Traditional Sweets',
+    'g-title-10': '100% Pure Ghee Sweets',
+    'g-sub-10': 'Shree Mishthan Bhandar Special',
+
+    // Process Section
+    'process-tag': '✦ Seamless Workflow',
+    'process-heading': 'How We Grow Your Store',
+    'process-desc': 'Get customized ready-to-post creatives for your business in 3 simple steps.',
+    'process-step-1-title': 'Select Your Pack',
+    'process-step-1-desc': 'Choose between Starter Pack (₹499) or Premium Pack (₹799) with promo videos.',
+    'process-step-2-title': 'Send Shop Details',
+    'process-step-2-desc': 'Share your shop name, phone number, festival offers, or product photos on WhatsApp.',
+    'process-step-3-title': 'Receive & Post in 24h',
+    'process-step-3-desc': 'Receive ultra HD creatives and videos formatted for WhatsApp status, reels & Instagram.',
+
+    // Reviews Section
+    'reviews-tag': '✦ Verified Testimonials',
+    'reviews-heading': 'Loved by Local Business Owners',
+    'reviews-desc': 'See what store owners say after launching their campaigns with Grow Online Shop.',
+    'review-1-text': '"Took the ₹499 pack during Rakshabandhan. As soon as I put it on WhatsApp status, customers started calling for sweet pre-orders. Superb quality!"',
+    'review-2-text': '"In Dibiyapur, our grocery store festival offer posters were delivered within 24 hours. Got an amazing response from local customers!"',
+    'review-3-text': '"Took the ₹799 Premium pack for our festive sale in Etawah. The HD promo reels and banners doubled our store footfall and inquiries!"',
+    'review-4-text': '"Our Garments store in Kanpur got custom WhatsApp status and festival creatives in 24h. Design quality is top-notch, highly recommended!"',
+
+    // FAQ Section
+    'faq-tag': '✦ Got Questions?',
+    'faq-heading': 'Frequently Asked Questions',
+    'faq-desc': 'Everything you need to know about our creative packages.',
+    'faq-q-1': 'How fast will I receive my designs?',
+    'faq-a-1': 'All creatives are delivered directly on WhatsApp within <strong>24 hours</strong> of receiving your details. Premium pack orders receive top priority.',
+    'faq-q-2': 'Can I customize the designs with my shop name & phone number?',
+    'faq-a-2': 'Yes, absolutely! In both Starter and Premium packs, all designs are branded with your shop name, logo, phone number, address, and special discount offers.',
+    'faq-q-3': 'What is the difference between Starter and Premium Pack?',
+    'faq-a-3': 'Starter Pack (₹499) gives you 4 custom photos + 4 status designs. Premium Pack (₹799) includes <strong>2 cinematic promo videos/reels</strong>, 8 photos + 8 status designs, editable files, and VIP support.',
+    'faq-q-4': 'How do I pay and start my order?',
+    'faq-a-4': 'Click on any "Get Pack" button to open WhatsApp with a pre-filled message. You can pay via UPI (GPay, PhonePe, Paytm) after confirming your details with our team.',
+
+    // Footer
+    'footer-desc': 'Helping local retail shops, restaurants, jewelers, and service stores scale their brand presence with high-converting social media creatives.',
+    'footer-quick-links-title': 'Quick Links',
+    'footer-packages-title': 'Packages',
+    'footer-support-title': 'Instant Support',
+    'footer-support-p': 'Ready to launch your festive campaign today?',
+    'btn-footer-chat-txt': '💬 Chat on WhatsApp',
+    'floating-wa-txt': 'Order on WhatsApp'
+  }
+};
+window.setLanguage = function(lang) {
+  window.currentLang = lang;
+  const isHi = (lang === 'hi');
+
+  // Toggle active button state
+  const btnHi = document.getElementById('btn-lang-hi');
+  const btnEn = document.getElementById('btn-lang-en');
+  if (btnHi) btnHi.classList.toggle('active', isHi);
+  if (btnEn) btnEn.classList.toggle('active', !isHi);
+
+  // Translate all mapped elements
+  const dict = translations[lang] || translations.hi;
+  for (const id in dict) {
+    const el = document.getElementById(id);
+    if (el) {
+      if (dict[id].includes('<')) {
+        el.innerHTML = dict[id];
+      } else {
+        el.textContent = dict[id];
+      }
+    }
+  }
+
+  // Update dynamic duration values in chosen language
+  if (typeof window.setGlobalPlanDuration === 'function') {
+    window.setGlobalPlanDuration(currentGlobalDur);
+  }
+};
+
+// Initialize default language (Hindi) on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+  window.setLanguage('hi');
+});
 
 </script>
 
