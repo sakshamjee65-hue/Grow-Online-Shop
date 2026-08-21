@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+import json
+
+transcript_path = r"C:\Users\Saksham\.gemini\antigravity-ide\brain\7c2457ed-c985-4c58-9115-9b23833c18f3\.system_generated\logs\transcript_full.jsonl"
+
+found = []
+with open(transcript_path, 'r', encoding='utf-8', errors='ignore') as f:
+    for idx, line in enumerate(f):
+        if '<!DOCTYPE html>' in line or '<html' in line:
+            found.append((idx, len(line)))
+
+print("Found HTML matches at lines:", found)
+
+# Extract from highest line match
+if found:
+    last_line_idx = found[-1][0]
+    with open(transcript_path, 'r', encoding='utf-8', errors='ignore') as f:
+        for idx, line in enumerate(f):
+            if idx == last_line_idx:
+                d = json.loads(line)
+                for tc in d.get('tool_calls', []):
+                    code = tc.get('args', {}).get('CodeContent', '')
+                    if '<!DOCTYPE html>' in code or '<html' in code:
+                        with open('index_recovered.html', 'w', encoding='utf-8') as out:
+                            out.write(code)
+                        print("Saved index_recovered.html, len:", len(code))
