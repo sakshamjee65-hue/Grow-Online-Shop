@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grow Online Shop — Defy Gravity, Grow Online</title>
+  <link rel="icon" type="image/png" href="gos-logo.png" />
   <meta name="description" content="Grow Online Shop is India's leading digital creative growth agency. We craft high-converting festive posters, WhatsApp status packs, and cinematic promo videos for local businesses." />
   
   <!-- Premium Fonts -->
@@ -4798,6 +4799,72 @@
       object-position: top center !important;
     }
 
+
+    /* PRICING SECTION REORDER: SHOWCASE -> COUNTDOWN & TOGGLE -> 2-COL PRICING CARDS */
+    .showcase-single-container {
+      max-width: 900px;
+      margin: 24px auto 0;
+    }
+    .pricing-cards-2col-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 32px auto 0;
+    }
+    @media (max-width: 860px) {
+      .pricing-cards-2col-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+        /* GOS BRAND LOGO IMAGE STYLES (BIGGER & PROMINENT) */
+    .nav-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand-logo-img {
+      height: 52px;
+      width: auto;
+      max-width: 64px;
+      object-fit: contain;
+      border-radius: 10px;
+      filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.75));
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .nav-brand-group:hover .nav-brand-logo-img {
+      transform: scale(1.12) rotate(-3deg);
+      filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.95));
+    }
+    .footer-brand-logo-img {
+      height: 64px;
+      width: auto;
+      max-width: 80px;
+      object-fit: contain;
+      border-radius: 14px;
+      filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.8));
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    }
+    .footer-brand-logo-img:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 22px rgba(168, 85, 247, 0.95));
+    }
+    @media (max-width: 768px) {
+      .nav-brand-logo-img {
+        height: 44px;
+        max-width: 52px;
+      }
+      .footer-brand-logo-img {
+        height: 54px;
+        max-width: 68px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -4820,9 +4887,7 @@
   <header class="navbar-pill-container">
     <nav class="navbar-floating-pill">
       <a href="#home" class="nav-brand-group">
-        <div class="stylish-gos-logo" aria-label="GOS Logo">
-          <span class="gos-text">GOS</span>
-        </div>
+        <img src="gos-logo.png" alt="GOS Logo" class="nav-brand-logo-img" />
         <span class="nav-brand-title">Grow Online Shop</span>
       </a>
 
@@ -4969,55 +5034,19 @@
     </div>
   </section>
 
-  <!-- PRICING SECTION -->
-    <!-- PRICING SECTION -->
-    <!-- PRICING SECTION -->
-    <!-- PRICING SECTION MATCHING SCREENSHOTS 2 & 3 -->
+      <!-- PRICING SECTION -->
   <section class="pricing-section-flat" id="pricing">
     <div class="container">
 
-      <!-- SECTION HEADER -->
+      <!-- 1. SECTION HEADER -->
       <div class="section-title-wrap">
         <div class="section-sub-tag" id="pricing-sub-tag">🎀 सीमित समय के लिए फेस्टिव ऑफ़र</div>
         <h2 class="section-main-heading" id="pricing-main-heading">रक्षाबंधन स्पेशल ऑफर्स</h2>
         <p class="section-main-desc" id="pricing-main-desc">स्थानीय रिटेल दुकानों, मिठाई स्टोर्स, कैफे और ज्वेलर्स के लिए विशेष 3-दिवसीय फेस्टिव छूट।</p>
       </div>
 
-      <!-- RAKSHABANDHAN COUNTDOWN URGENCY CARD -->
-      <div class="rakhi-countdown-card">
-        <div class="countdown-left-content">
-          <div class="countdown-flame-pill" id="timer-badge-flame">🔥 सिर्फ 3 दिनों के लिए</div>
-          <div class="countdown-texts">
-            <h3 class="countdown-head-title" id="timer-title-head">रक्षाबंधन महा ऑफ़र — जल्द समाप्त होगा!</h3>
-            <p class="countdown-head-sub" id="timer-title-sub">₹499 स्टार्टर और ₹799 प्रीमियम दोनों पैक्स पर स्पेशल फ्लैट डिस्काउंट</p>
-          </div>
-        </div>
-
-        <div class="countdown-digits-wrap">
-          <div class="countdown-box-item"><div class="countdown-digit" id="t-days">02</div><div class="countdown-lbl" id="label-days">दिन</div></div>
-          <span class="countdown-colon">:</span>
-          <div class="countdown-box-item"><div class="countdown-digit" id="t-hours">23</div><div class="countdown-lbl" id="label-hours">घंटे</div></div>
-          <span class="countdown-colon">:</span>
-          <div class="countdown-box-item"><div class="countdown-digit" id="t-mins">17</div><div class="countdown-lbl" id="label-mins">मिनट</div></div>
-          <span class="countdown-colon">:</span>
-          <div class="countdown-box-item"><div class="countdown-digit" id="t-secs">30</div><div class="countdown-lbl" id="label-secs">सेकंड</div></div>
-        </div>
-      </div>
-
-      <!-- DURATION TOGGLE BAR -->
-      <div class="duration-toggle-bar">
-        <button class="dur-toggle-btn active" id="btn-dur-1m" onclick="setGlobalPlanDuration('1m')">
-          📅 <span id="dur-1m-lbl">1 महीने का प्लान</span>
-        </button>
-        <button class="dur-toggle-btn" id="btn-dur-3m" onclick="setGlobalPlanDuration('3m')">
-          🚀 <span id="dur-3m-lbl">3 महीने का प्लान</span> <span class="dur-save-tag">महा बचत 🔥</span>
-        </button>
-      </div>
-
-            <!-- 3-COLUMN SPLIT GRID MATCHING SCREENSHOT EXACTLY -->
-      <div class="pricing-showcase-split-grid">
-
-        <!-- 1. LEFT COLUMN: LIVE DESIGN SHOWCASE -->
+      <!-- 2. LIVE DESIGN SCROLLING SHOWCASE (FIRST) -->
+      <div class="showcase-single-container">
         <div class="showcase-gallery-card-box">
           <div class="showcase-header-pill-glow" id="showcase-badge-glow">✨ लाइव डिज़ाइन गैलरी</div>
           <h3 class="showcase-headline-title" id="showcase-title-main">पैक्स में शामिल पोस्टर्स व वीडियोज</h3>
@@ -5106,8 +5135,43 @@
             🔍 किसी भी पोस्टर पर क्लिक करके बड़ा देखें (Click to Zoom)
           </div>
         </div>
+      </div>
 
-        <!-- 2. COLUMN 2: STARTER PACK CARD (MATCHING SCREENSHOT) -->
+      <!-- 3. RAKSHABANDHAN COUNTDOWN URGENCY CARD (BELOW IMAGES, ABOVE PRICE CARDS) -->
+      <div class="rakhi-countdown-card" style="margin-top: 36px;">
+        <div class="countdown-left-content">
+          <div class="countdown-flame-pill" id="timer-badge-flame">🔥 सिर्फ 3 दिनों के लिए</div>
+          <div class="countdown-texts">
+            <h3 class="countdown-head-title" id="timer-title-head">रक्षाबंधन महा ऑफ़र — जल्द समाप्त होगा!</h3>
+            <p class="countdown-head-sub" id="timer-title-sub">₹499 स्टार्टर और ₹799 प्रीमियम दोनों पैक्स पर स्पेशल फ्लैट डिस्काउंट</p>
+          </div>
+        </div>
+
+        <div class="countdown-digits-wrap">
+          <div class="countdown-box-item"><div class="countdown-digit" id="t-days">02</div><div class="countdown-lbl" id="label-days">दिन</div></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-box-item"><div class="countdown-digit" id="t-hours">23</div><div class="countdown-lbl" id="label-hours">घंटे</div></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-box-item"><div class="countdown-digit" id="t-mins">17</div><div class="countdown-lbl" id="label-mins">मिनट</div></div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-box-item"><div class="countdown-digit" id="t-secs">30</div><div class="countdown-lbl" id="label-secs">सेकंड</div></div>
+        </div>
+      </div>
+
+      <!-- 4. DURATION TOGGLE BAR (BELOW IMAGES, ABOVE PRICE CARDS) -->
+      <div class="duration-toggle-bar" style="margin-top: 20px;">
+        <button class="dur-toggle-btn active" id="btn-dur-1m" onclick="setGlobalPlanDuration('1m')">
+          📅 <span id="dur-1m-lbl">1 महीने का प्लान</span>
+        </button>
+        <button class="dur-toggle-btn" id="btn-dur-3m" onclick="setGlobalPlanDuration('3m')">
+          🚀 <span id="dur-3m-lbl">3 महीने का प्लान</span> <span class="dur-save-tag">महा बचत 🔥</span>
+        </button>
+      </div>
+
+      <!-- 5. 2-COLUMN PRICING CARDS (STARTER & PREMIUM PACKS) -->
+      <div class="pricing-cards-2col-grid">
+
+        <!-- STARTER PACK CARD (MATCHING SCREENSHOT) -->
         <div class="pro-pricing-card starter-card-clean" id="starter-card">
           <div class="card-inner-pad">
             <div class="card-category-badge starter-badge">🎀 रक्षाबंधन स्पेशल ऑफ़र</div>
@@ -5167,7 +5231,7 @@
           </a>
         </div>
 
-        <!-- 3. COLUMN 3: PREMIUM GROWTH PRO PACK CARD (MATCHING SCREENSHOT) -->
+        <!-- PREMIUM GROWTH PRO PACK CARD (MATCHING SCREENSHOT) -->
         <div class="pro-pricing-card premium-card-glow" id="premium-card">
           <div class="popular-ribbon-tag" id="premium-top-badge">⭐ सबसे लोकप्रिय</div>
           <div class="card-inner-pad">
@@ -5230,10 +5294,11 @@
         </div>
 
       </div>
+
     </div>
   </section>
 
-    <!-- LIVE PORTFOLIO GALLERY (10 DISTINCT WORKING RETAIL CAMPAIGNS) -->
+  <!-- LIVE PORTFOLIO GALLERY (10 DISTINCT WORKING RETAIL CAMPAIGNS) -->
   <section class="portfolio-section" id="portfolio">
     <div class="container">
 
@@ -5254,10 +5319,10 @@
       <!-- Gallery Grid (100% Accurate Item Matching) -->
       <div class="portfolio-grid" id="gallery-container">
 
-        <!-- Item 1: Sweets -->
+        <!-- Item 1: Sweets (Shree Mishthan Bhandar) -->
         <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Shree Mishthan Bhandar — Rakshabandhan Sweets Sale')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge" id="g-badge-1">🍬 फेस्टिव ऑफ़र</span>
+            <span class="gallery-badge" id="g-badge-1">🍬 मिठाई सेल</span>
             <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Rakshabandhan Sweets Campaign" />
           </div>
           <div class="gallery-info">
@@ -5267,7 +5332,7 @@
           </div>
         </div>
 
-        <!-- Item 2: Jewellery -->
+        <!-- Item 2: Jewellery (Sri Jewellers) -->
         <div class="gallery-item" data-cat="fashion festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Sri Jewellers — Royal Festive Collection')">
           <div class="gallery-thumb-wrap">
             <span class="gallery-badge" id="g-badge-2">💎 रॉयल गोल्ड</span>
@@ -5280,7 +5345,7 @@
           </div>
         </div>
 
-        <!-- Item 3: Apparel -->
+        <!-- Item 3: Apparel (Elite Fashion Bazaar) -->
         <div class="gallery-item" data-cat="fashion" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Elite Fashion Bazaar — Up to 90% Off')">
           <div class="gallery-thumb-wrap">
             <span class="gallery-badge" id="g-badge-3">👗 कपड़े व फैशन</span>
@@ -5293,7 +5358,7 @@
           </div>
         </div>
 
-        <!-- Item 4: Salon & Spa -->
+        <!-- Item 4: Salon & Spa (Smart Cuts) -->
         <div class="gallery-item" data-cat="fashion" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Smart Cuts Salon & Spa — Festive Makeover 30% Off')">
           <div class="gallery-thumb-wrap">
             <span class="gallery-badge" id="g-badge-4">💄 सैलून व स्पा</span>
@@ -5306,7 +5371,7 @@
           </div>
         </div>
 
-        <!-- Item 5: Kirana & Grocery -->
+        <!-- Item 5: Kirana & Grocery (Apna Kirana) -->
         <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Apna Kirana & Supermart — Monthly Kirana Dhamaka')">
           <div class="gallery-thumb-wrap">
             <span class="gallery-badge" id="g-badge-5">🛒 किराना व राशन</span>
@@ -5319,7 +5384,7 @@
           </div>
         </div>
 
-        <!-- Item 6: Cafe Pizza -->
+        <!-- Item 6: Cafe Pizza (Local Cafe) -->
         <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Local Cafe — Weekend Offer Buy 1 Get 1 Free')">
           <div class="gallery-thumb-wrap">
             <span class="gallery-badge" id="g-badge-6">🍕 कैफे व फ़ास्ट फ़ूड</span>
@@ -5327,65 +5392,64 @@
           </div>
           <div class="gallery-info">
             <div class="gallery-cat" id="g-cat-6">फास्ट फूड व कैफे</div>
-            <div class="gallery-title" id="g-title-7">बाय 1 गेट 1 फ्री पिज़्ज़ा पार्टी</div>
+            <div class="gallery-title" id="g-title-6">बाय 1 गेट 1 फ्री पिज़्ज़ा पार्टी</div>
             <div class="gallery-sub" id="g-sub-6">लोकल कैफे व लाउंज</div>
           </div>
         </div>
 
-        <!-- Item 7: Samosa & Snacks -->
+        <!-- Item 7: Samosa & Snacks (Weekend Snacks) -->
         <div class="gallery-item landscape" data-cat="dining" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png', 'Weekend Snacks Offer — Buy 1 Get 1 Free Samosas')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge" id="g-badge-7">🥟 रेस्टोरेंट ऑफ़र</span>
+            <span class="gallery-badge" id="g-badge-7">🥟 रेस्टोरेंट स्नैक्स</span>
             <img src="watermark-removed-Gemini_Generated_Image_gjc6vigjc6vigjc6.png" alt="Weekend BOGO Samosas" />
           </div>
           <div class="gallery-info">
             <div class="gallery-cat" id="g-cat-7">रेस्टोरेंट व स्नैक्स</div>
             <div class="gallery-title" id="g-title-7">वीकेंड समोसा स्पेशल ऑफ़र</div>
-            <div class="gallery-sub" id="g-sub-7">क्रिस्पी समोसा प्लैटर</div>
+            <div class="gallery-sub" id="g-sub-7">क्रिस्पी समोसा प्लैटर (Buy 1 Get 1)</div>
           </div>
         </div>
 
-        <!-- Item 8: Pharmacy & Medical -->
-        <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Aayush Medical & Pharmacy Store — 24/7 Generic & Healthcare')">
+        <!-- Item 8: Pure Desi Ghee Sweets (Holi Lal Mishthan Thali) -->
+        <div class="gallery-item landscape" data-cat="dining festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Holi Lal Mishthan — 100% Pure Desi Ghee Sweets')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge" id="g-badge-8">💊 फार्मेसी व दवाएं</span>
-            <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Aayush Pharmacy & Medical Store" />
+            <span class="gallery-badge" id="g-badge-8">🍮 शुद्ध देसी घी</span>
+            <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Holi Lal Pure Desi Ghee Sweets" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat" id="g-cat-8">मेडिकल व फार्मेसी</div>
-            <div class="gallery-title" id="g-title-8">आयुष मेडिकल व फार्मेसी स्टोर</div>
-            <div class="gallery-sub" id="g-sub-8">24/7 जेनेरिक व जरूरी दवाएं उपलब्ध</div>
+            <div class="gallery-cat" id="g-cat-8">देसी घी मिष्ठान</div>
+            <div class="gallery-title" id="g-title-8">100% शुद्ध देसी घी मिठाई</div>
+            <div class="gallery-sub" id="g-sub-8">होलिलाल मिष्ठान भंडार स्पेशल</div>
           </div>
         </div>
 
-        <!-- Item 9: Electronics & Mobile -->
-        <div class="gallery-item" data-cat="festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Gupta Electronics & Mobiles — Festive Megasale')">
+        <!-- Item 9: Urban Spice Cafe (अर्बन स्पाइस कैफे - Buy 1 Get 1 Free) -->
+        <div class="gallery-item" data-cat="dining" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Urban Spice Cafe — Weekend Food Fest Buy 1 Get 1 Free')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge" id="g-badge-9">📱 इलेक्ट्रॉनिक्स व मोबाइल</span>
-            <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics & Mobile Store" />
+            <span class="gallery-badge" id="g-badge-9">🍕 कैफे व रेस्टोरेंट</span>
+            <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Urban Spice Cafe Food Fest" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat" id="g-cat-9">मोबाइल व इलेक्ट्रॉनिक्स</div>
-            <div class="gallery-title" id="g-title-9">गुप्ता इलेक्ट्रॉनिक्स फेस्टिव सेल</div>
-            <div class="gallery-sub" id="g-sub-9">स्मार्टफ़ोन, टीवी व होम अप्लायंसेज</div>
+            <div class="gallery-cat" id="g-cat-9">कैफे व रेस्टोरेंट</div>
+            <div class="gallery-title" id="g-title-9">अर्बन स्पाइस वीकेंड फूड फेस्ट</div>
+            <div class="gallery-sub" id="g-sub-9">बाय 1 गेट 1 फ्री (पिज़्ज़ा, बर्गर व पास्ता)</div>
           </div>
         </div>
 
-        <!-- Item 10: Pure Desi Ghee Sweets -->
-        <div class="gallery-item landscape" data-cat="dining festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png', 'Shree Mishthan Bhandar — 100% Pure Desi Ghee Sweets')">
+        <!-- Item 10: Evening Samosa Snacks (Holi Lal Mishthan) -->
+        <div class="gallery-item landscape" data-cat="dining festive" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png', 'Holi Lal Mishthan — Evening Samosa Snacks Offer')">
           <div class="gallery-thumb-wrap">
-            <span class="gallery-badge" id="g-badge-10">🍮 शुद्ध देसी घी</span>
-            <img src="watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png" alt="Pure Desi Ghee Sweets" />
+            <span class="gallery-badge" id="g-badge-10">🥟 शाम का नाश्ता</span>
+            <img src="watermark-removed-Gemini_Generated_Image_l9usy7l9usy7l9us.png" alt="Holi Lal Evening Samosa Offer" />
           </div>
           <div class="gallery-info">
-            <div class="gallery-cat" id="g-cat-10">देसी घी मिष्ठान</div>
-            <div class="gallery-title" id="g-title-10">100% शुद्ध देसी घी मिठाई</div>
-            <div class="gallery-sub" id="g-sub-10">श्री मिष्ठान भंडार स्पेशल</div>
+            <div class="gallery-cat" id="g-cat-10">स्नैक्स व मिष्ठान</div>
+            <div class="gallery-title" id="g-title-10">शाम का नाश्ता गरमा-गर्म समोसा</div>
+            <div class="gallery-sub" id="g-sub-10">होलिलाल स्पेशल इवनिंग ऑफ़र</div>
           </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
@@ -5563,7 +5627,7 @@
         <div class="footer-brand-col">
           <div class="brand">
             <div class="brand-logo-wrap">
-              <div class="brand-logo-badge" style="background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ffffff; font-size: 1.1rem; box-shadow: 0 0 16px rgba(6, 182, 212, 0.6); font-family: var(--font-heading, sans-serif); letter-spacing: 0.5px;">GOS</div>
+              <img src="gos-logo.png" alt="GOS Logo" class="footer-brand-logo-img" />
             </div>
             <div class="brand-info">
               <span class="brand-title">Grow Online Shop</span>
@@ -6260,20 +6324,20 @@ const translations = {
     'filter-btn-festive': 'त्यौहार व मिठाई',
     'filter-btn-fashion': 'फैशन व ज्वेलरी',
     'filter-btn-dining': 'कैफे व रेस्टोरेंट',
-                // Gallery Cards 1-10 (100% Accurately Matched)
-    'g-badge-1': '🍬 Festive Offer',
+                                        // Gallery Cards 1-10 (100% No Medicine - Exact Photo Matching)
+    'g-badge-1': '🍬 Sweets Sale',
     'g-cat-1': 'Sweets & Mishthan',
     'g-title-1': 'Rakshabandhan Sweets Sale',
     'g-sub-1': 'Shree Mishthan Bhandar Series',
 
-    'g-badge-2': '💎 Luxury & Gold',
+    'g-badge-2': '💎 Royal Gold',
     'g-cat-2': 'Jewellery & Ornaments',
     'g-title-2': 'Royal Festive Jewellery',
     'g-sub-2': 'Sri Jewellers Gold & Diamond',
 
-    'g-badge-3': '👗 Clothing Sale',
+    'g-badge-3': '👗 Fashion Sale',
     'g-cat-3': 'Apparel & Fashion',
-    'g-title-3': 'Elite Fashion Festive Sale (90% Off)',
+    'g-title-3': 'Elite Fashion Mega Sale (90% Off)',
     'g-sub-3': 'Multi-Category Product Grid',
 
     'g-badge-4': '💄 Salon & Spa',
@@ -6281,7 +6345,7 @@ const translations = {
     'g-title-4': 'Festive Makeover Sale (30% Off)',
     'g-sub-4': 'Smart Cuts Salon & Spa',
 
-    'g-badge-5': '🛒 Grocery & Retail',
+    'g-badge-5': '🛒 Grocery & Supermart',
     'g-cat-5': 'Supermarket & Kirana',
     'g-title-5': 'Monthly Kirana Dhamaka',
     'g-sub-5': 'Apna Kirana & Supermart',
@@ -6291,25 +6355,25 @@ const translations = {
     'g-title-6': 'Buy 1 Get 1 Free Feast',
     'g-sub-6': 'Local Cafe & Lounge',
 
-    'g-badge-7': '🥟 Restaurant Offer',
+    'g-badge-7': '🥟 Restaurant Snacks',
     'g-cat-7': 'Traditional Dining',
-    'g-title-7': 'Weekend BOGO Snacks Banner',
-    'g-sub-7': 'Crispy Samosa Platter',
+    'g-title-7': 'Weekend BOGO Samosas',
+    'g-sub-7': 'Crispy Samosa Platter (Buy 1 Get 1)',
 
-    'g-badge-8': '💊 Pharmacy & Meds',
-    'g-cat-8': 'Medical & Healthcare',
-    'g-title-8': 'Aayush Medical & Pharmacy',
-    'g-sub-8': '24/7 Generic Medicines & Healthcare',
+    'g-badge-8': '🍮 Pure Desi Ghee',
+    'g-cat-8': 'Traditional Sweets',
+    'g-title-8': '100% Pure Desi Ghee Sweets',
+    'g-sub-8': 'Holi Lal Mishthan Special',
 
-    'g-badge-9': '📱 Electronics & Mobile',
-    'g-cat-9': 'Mobiles & Electronics',
-    'g-title-9': 'Gupta Electronics Festive Sale',
-    'g-sub-9': 'Smartphones, TV & Home Appliances',
+    'g-badge-9': '🍕 Cafe & Dining',
+    'g-cat-9': 'Cafe & Restaurant',
+    'g-title-9': 'Urban Spice Weekend Food Fest',
+    'g-sub-9': 'Buy 1 Get 1 Free (Pizza, Burger, Pasta)',
 
-    'g-badge-10': '🍮 Pure Desi Ghee',
-    'g-cat-10': 'Traditional Sweets',
-    'g-title-10': '100% Pure Ghee Sweets',
-    'g-sub-10': 'Shree Mishthan Bhandar Special',
+    'g-badge-10': '🥟 Evening Snacks',
+    'g-cat-10': 'Snacks & Sweets',
+    'g-title-10': 'Evening Samosa Snacks Special',
+    'g-sub-10': 'Holi Lal Special Evening Offer',
 
     // Process Section
     'process-tag': '✦ आसान प्रक्रिया',
