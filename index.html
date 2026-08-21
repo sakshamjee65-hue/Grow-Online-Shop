@@ -4196,90 +4196,85 @@
     }
 
 
-    /* ULTRA-PREMIUM COMPACT HERO DEAL & LIVE COUNTDOWN BADGE */
+    /* ULTRA-PREMIUM LUXURY HERO DEAL BADGE */
     .hero-deal-urgency-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.16) 0%, rgba(168, 85, 247, 0.18) 100%);
-      border: 1.5px solid rgba(244, 63, 94, 0.45);
-      padding: 6px 18px;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(168, 85, 247, 0.14) 50%, rgba(6, 182, 212, 0.12) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 6px 20px;
       border-radius: 100px;
-      margin-bottom: 18px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 0 25px rgba(244, 63, 94, 0.25), inset 0 0 12px rgba(168, 85, 247, 0.2);
+      margin-bottom: 20px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(244, 63, 94, 0.2);
       width: fit-content;
-      animation: badgeGlowPulse 4s ease-in-out infinite alternate;
+      transition: all 0.3s ease;
     }
-    @keyframes badgeGlowPulse {
-      0% { box-shadow: 0 0 20px rgba(244, 63, 94, 0.25), inset 0 0 10px rgba(168, 85, 247, 0.2); }
-      100% { box-shadow: 0 0 35px rgba(244, 63, 94, 0.45), inset 0 0 16px rgba(6, 182, 212, 0.3); }
+    .hero-deal-urgency-badge:hover {
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 35px rgba(34, 211, 238, 0.35);
+      border-color: rgba(34, 211, 238, 0.5);
     }
-    .deal-prices-group {
-      display: flex;
-      align-items: center;
+    .deal-pill-left {
+      display: inline-flex;
+      align-items: baseline;
       gap: 8px;
     }
-    .deal-old-price {
+    .deal-hot-price {
+      font-family: var(--font-heading, sans-serif);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #38bdf8;
+      letter-spacing: -0.5px;
+      text-shadow: 0 0 16px rgba(56, 189, 248, 0.7);
+    }
+    .deal-strike-price {
       font-family: var(--font-mono, monospace);
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-size: 0.82rem;
+      font-weight: 600;
       color: #94a3b8;
       text-decoration: line-through;
       text-decoration-color: #f43f5e;
-      text-decoration-thickness: 2px;
+      text-decoration-thickness: 1.5px;
     }
-    .deal-curr-price {
-      font-family: var(--font-heading, sans-serif);
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: #22d3ee;
-      letter-spacing: -0.5px;
-      text-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
-    }
-    .deal-off-tag {
+    .deal-badge-tag {
       background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
       color: #ffffff;
       font-family: var(--font-heading, sans-serif);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+      padding: 3px 10px;
+      border-radius: 100px;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+      letter-spacing: 0.3px;
     }
-    .deal-v-sep {
-      color: rgba(255, 255, 255, 0.25);
-      font-size: 0.9rem;
+    .deal-separator {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 1rem;
     }
-    .deal-countdown-box {
-      display: flex;
+    .deal-pill-right {
+      display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-    .deal-clock-icon {
-      font-size: 0.9rem;
+    .deal-timer-icon {
+      font-size: 0.95rem;
     }
-    .deal-time-digits {
-      display: flex;
-      align-items: center;
-      gap: 3px;
+    .deal-timer-digits {
       font-family: var(--font-mono, monospace);
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #ffffff;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 3px;
     }
-    .ht-digit {
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 2px 5px;
-      border-radius: 5px;
-      color: #ffffff;
-    }
-    .ht-unit {
-      font-size: 0.72rem;
+    .deal-timer-digits small {
+      font-size: 0.7rem;
       color: #38bdf8;
+      font-weight: 700;
       margin-right: 2px;
+      font-family: var(--font-body, sans-serif);
     }
 
 
@@ -4470,6 +4465,339 @@
       color: #ffffff;
     }
 
+
+    /* ==========================================================
+       MOBILE RESPONSIVE & ZERO-HORIZONTAL-OVERFLOW SHIFT FIX
+       ========================================================== */
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box !important;
+    }
+    .app-wrapper {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      position: relative;
+    }
+    .container {
+      width: 100% !important;
+      max-width: 1240px;
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      box-sizing: border-box !important;
+    }
+
+    /* MOBILE SPECIFIC HERO & COMPONENT FIXES */
+    @media (max-width: 768px) {
+      .pro-hero-container {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 20px !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pro-hero-title {
+        font-size: 1.75rem !important;
+        line-height: 1.25 !important;
+        word-break: break-word !important;
+        text-align: center !important;
+      }
+      .pro-hero-desc {
+        font-size: 0.92rem !important;
+        margin: 0 auto 14px !important;
+        text-align: center !important;
+      }
+      .pro-hero-bullets {
+        justify-content: center !important;
+        gap: 6px !important;
+        margin-bottom: 14px !important;
+      }
+      .bullet-tag {
+        font-size: 0.75rem !important;
+        padding: 4px 8px !important;
+      }
+      .hero-deal-urgency-badge {
+        max-width: 100% !important;
+        margin: 0 auto 14px !important;
+        padding: 5px 12px !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+      }
+      .deal-hot-price {
+        font-size: 1.15rem !important;
+      }
+      .deal-strike-price {
+        font-size: 0.75rem !important;
+      }
+      .deal-badge-tag {
+        font-size: 0.68rem !important;
+        padding: 2px 7px !important;
+      }
+      .deal-days-text {
+        font-size: 0.78rem !important;
+      }
+      .pro-hero-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto 14px !important;
+        gap: 10px !important;
+      }
+      .pro-btn-primary, .pro-btn-whatsapp {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 12px 18px !important;
+        font-size: 0.92rem !important;
+      }
+      .pro-hero-trust-bar {
+        justify-content: center !important;
+        margin-bottom: 16px !important;
+      }
+
+      /* Hero Visual Mockup on Mobile */
+      .hero-mockup-frame {
+        width: 100% !important;
+        max-width: 310px !important;
+        margin: 0 auto !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+      }
+      .hero-featured-poster-wrap {
+        max-height: 380px !important;
+      }
+            .floating-trust-card {
+        display: flex !important;
+        padding: 4px 8px !important;
+        gap: 6px !important;
+        border-radius: 10px !important;
+      }
+      .floating-trust-card .badge-icon {
+        font-size: 1rem !important;
+      }
+      .floating-trust-card .badge-text strong {
+        font-size: 0.75rem !important;
+      }
+      .floating-trust-card .badge-text span {
+        font-size: 0.65rem !important;
+      }
+      .top-left-badge {
+        top: -14px !important;
+        left: 4px !important;
+      }
+      .bottom-right-badge {
+        top: -14px !important;
+        right: 4px !important;
+        bottom: auto !important;
+      }
+      .hero-mockup-thumbs {
+        gap: 6px !important;
+      }
+      .mockup-thumb {
+        width: 44px !important;
+        height: 58px !important;
+      }
+      .poster-badge-category {
+        font-size: 0.75rem !important;
+        padding: 4px 10px !important;
+        bottom: 8px !important;
+      }
+
+      /* 3-Column Pricing on Mobile */
+      .pricing-showcase-split-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .rakhi-countdown-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 14px !important;
+        padding: 16px !important;
+      }
+      .countdown-digits-wrap {
+        justify-content: center !important;
+      }
+    }
+
+
+    /* LUXURY FLOATING WHATSAPP FAB BUTTON (BOTTOM-RIGHT) */
+    .luxury-floating-wa-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+      z-index: 9999;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    }
+    .luxury-floating-wa-fab:hover {
+      transform: scale(1.12);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.65);
+    }
+    .wa-fab-pulse {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rgba(37, 211, 102, 0.4);
+      animation: waPulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      z-index: -1;
+    }
+    @keyframes waPulseRing {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.4); opacity: 0; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    /* TIGHTEN HERO SPACING TO LIFT POSTER MOCKUP UPWARD */
+    .pro-hero-section {
+      padding-top: 4px !important;
+    }
+    .pro-hero-container {
+      gap: 24px !important;
+      padding-top: 4px !important;
+      padding-bottom: 12px !important;
+    }
+    .pro-hero-title {
+      font-size: clamp(1.75rem, 3.1vw, 2.6rem) !important;
+      margin-bottom: 10px !important;
+    }
+    .pro-hero-desc {
+      font-size: 0.96rem !important;
+      margin-bottom: 14px !important;
+    }
+    .pro-hero-bullets {
+      gap: 8px !important;
+      margin-bottom: 14px !important;
+    }
+    .hero-deal-urgency-badge {
+      margin-bottom: 14px !important;
+    }
+    .pro-hero-actions {
+      margin-bottom: 14px !important;
+    }
+    .pro-btn-primary {
+      padding: 12px 28px !important;
+      font-size: 1rem !important;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.5) !important;
+    }
+
+    /* HERO VISUAL LIFT */
+    .hero-mockup-frame {
+      margin-top: 0 !important;
+      max-width: 420px !important;
+    }
+    .hero-featured-poster-wrap {
+      max-height: 430px !important;
+    }
+
+    @media (max-width: 768px) {
+      .luxury-floating-wa-fab {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+      }
+      .luxury-floating-wa-fab svg {
+        width: 26px;
+        height: 26px;
+      }
+      .pro-hero-actions {
+        margin-bottom: 12px !important;
+      }
+      .hero-mockup-frame {
+        max-width: 320px !important;
+        margin: 0 auto !important;
+      }
+    }
+
+
+    /* FLOATING TRUST CARDS MATCHING SCREENSHOT EXACTLY */
+    .floating-trust-card {
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+      background: rgba(10, 7, 36, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 6px 14px;
+      border-radius: 14px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      z-index: 25;
+      position: absolute;
+    }
+    .top-left-badge {
+      top: -14px;
+      left: 10px;
+    }
+    .bottom-right-badge {
+      top: -14px;
+      right: 10px;
+      bottom: auto;
+    }
+    .badge-icon {
+      font-size: 1.2rem;
+    }
+    .badge-text strong {
+      display: block;
+      font-family: var(--font-heading, sans-serif);
+      font-size: 0.82rem;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .badge-text span {
+      font-family: var(--font-body, sans-serif);
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+
+
+    /* ENSURE HERO FEATURED POSTER AND THUMBS ALWAYS SHOW TOP FULLY */
+    .hero-featured-poster-wrap {
+      position: relative !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      aspect-ratio: 9 / 15.5 !important;
+      max-height: 480px !important;
+      background: #09061a !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    }
+    .hero-featured-poster-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: top center !important;
+      display: block !important;
+      transition: opacity 0.3s ease !important;
+    }
+    .mockup-thumb img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: top center !important;
+    }
+
 </style>
 </head>
 <body>
@@ -4546,31 +4874,23 @@
           <div class="bullet-tag" id="hero-bullet-3">🔥 सिर्फ ₹499 से शुरू</div>
         </div>
 
-                <!-- PREMIUM COMPACT HERO DEAL & LIVE COUNTDOWN BADGE -->
+                                <!-- ULTRA-PREMIUM COMPACT HERO DEAL BADGE (3 DAYS ONLY) -->
         <div class="hero-deal-urgency-badge">
-          <div class="deal-prices-group">
-            <span class="deal-old-price">₹999</span>
-            <span class="deal-curr-price">₹499</span>
-            <span class="deal-off-tag" id="hero-deal-off-badge">50% छूट 🔥</span>
+          <div class="deal-pill-left">
+            <span class="deal-hot-price">₹499</span>
+            <span class="deal-strike-price">₹999</span>
+            <span class="deal-badge-tag" id="hero-deal-off-badge">50% छूट 🔥</span>
           </div>
-          <span class="deal-v-sep">|</span>
-          <div class="deal-countdown-box">
-            <span class="deal-clock-icon">⏳</span>
-            <div class="deal-time-digits">
-              <span class="ht-digit" id="ht-days">02</span><span class="ht-unit" id="ht-lbl-d">d</span> :
-              <span class="ht-digit" id="ht-hours">23</span><span class="ht-unit" id="ht-lbl-h">h</span> :
-              <span class="ht-digit" id="ht-mins">59</span><span class="ht-unit" id="ht-lbl-m">m</span> :
-              <span class="ht-digit" id="ht-secs">46</span><span class="ht-unit" id="ht-lbl-s">s</span>
-            </div>
+          <span class="deal-separator">•</span>
+          <div class="deal-pill-right">
+            <span class="deal-timer-icon">⏳</span>
+            <span class="deal-days-text" id="hero-deal-days-txt">सिर्फ 3 दिन के लिए!</span>
           </div>
         </div>
 
         <div class="pro-hero-actions">
           <a href="#starter-card" class="pro-btn-primary" id="hero-cta-starter" onclick="scrollToStarterPack(event)">
             <span>🚀 <span id="hero-cta-starter-txt">आज ही ऑर्डर करें — ₹499 से शुरू</span></span>
-          </a>
-          <a href="https://wa.me/919258864392?text=Hello%20GrowOnline%20Shop!%20I%20want%20to%20know%20more%20about%20your%20creative%20services." target="_blank" class="pro-btn-whatsapp" id="hero-cta-wa">
-            <span>💬 <span id="hero-cta-wa-txt">WhatsApp पर बात करें</span></span>
           </a>
         </div>
 
@@ -5295,10 +5615,12 @@
 
 </div><!-- end app-wrapper -->
 
-<!-- STICKY WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/?text=Hello%20Grow%20Online%20Store!%20I%20want%20to%20order%20creative%20designs%20for%20my%20business." target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
-  <span>💬</span>
-  <span id="floating-wa-txt">WhatsApp पर ऑर्डर करें</span>
+<!-- ULTRA-PREMIUM FLOATING WHATSAPP BUTTON (BOTTOM-RIGHT) -->
+<a href="https://wa.me/919258864392?text=Hello%20GrowOnline%20Shop!%20I%20want%20to%20order%20creative%20posters%20for%20my%20business." target="_blank" class="luxury-floating-wa-fab" id="floating-wa-btn" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="#ffffff">
+    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.77.813 2.795.814 3.185 0 5.771-2.586 5.772-5.766 0-3.18-2.586-5.766-5.771-5.766zm9.969 5.766c0 5.516-4.484 10-10 10-1.761 0-3.411-.458-4.846-1.258l-5.154 1.352 1.376-5.023c-.917-1.504-1.444-3.267-1.444-5.071 0-5.516 4.484-10 10-10 5.516 0 10 4.484 10 10z"/>
+  </svg>
+  <span class="wa-fab-pulse"></span>
 </a>
 
 <!-- LIGHTBOX MODAL -->
@@ -5882,6 +6204,7 @@ const translations = {
     'hero-cta-wa-txt': 'WhatsApp पर बात करें',
     'hero-trust-cnt': '🔥 100+ स्थानीय दुकानें ऑनलाइन ग्रो कर रही हैं',
     'hero-deal-off-badge': '50% छूट 🔥',
+    'hero-deal-days-txt': 'सिर्फ 3 दिन के लिए!',
     'ht-lbl-d': 'दिन',
     'ht-lbl-h': 'घंटे',
     'ht-lbl-m': 'मिनट',
@@ -6050,6 +6373,7 @@ const translations = {
     'hero-cta-wa-txt': 'Chat on WhatsApp',
     'hero-trust-cnt': '🔥 100+ Local Stores Scaling Online',
     'hero-deal-off-badge': '50% OFF 🔥',
+    'hero-deal-days-txt': 'Only for 3 Days!',
     'ht-lbl-d': 'd',
     'ht-lbl-h': 'h',
     'ht-lbl-m': 'm',
