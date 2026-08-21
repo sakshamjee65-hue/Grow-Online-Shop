@@ -3754,56 +3754,139 @@
        DUAL OPPOSITE VERTICAL MARQUEE ENGINE (LEFT UP, RIGHT DOWN)
        ========================================================== */
     .showcase-marquee-2col {
-      height: 540px;
+      height: 520px;
       overflow: hidden;
       position: relative;
-      mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin-top: 14px;
+      contain: layout paint;
     }
     .marquee-sub-col {
       overflow: hidden;
       position: relative;
       height: 100%;
+      contain: layout paint;
     }
 
-    .marquee-track-left {
+    .marquee-track-inner {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      animation: moveColumnUp 24s linear infinite;
+      gap: 14px;
+      width: 100%;
     }
 
-    .marquee-track-right {
+    .marquee-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      animation: moveColumnDown 24s linear infinite;
+      gap: 14px;
+      width: 100%;
+      flex-shrink: 0;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
     }
 
-    .showcase-marquee-2col:hover .marquee-track-left,
-    .showcase-marquee-2col:hover .marquee-track-right {
+    .marquee-move-up .marquee-group {
+      animation: moveGroupUp 25s linear infinite;
+    }
+
+    .marquee-move-down .marquee-group {
+      animation: moveGroupDown 25s linear infinite;
+    }
+
+    .showcase-marquee-2col:hover .marquee-group,
+    .showcase-marquee-2col:active .marquee-group {
       animation-play-state: paused;
     }
 
-    @keyframes moveColumnUp {
+    @keyframes moveGroupUp {
       0% {
-        transform: translateY(0%);
+        transform: translate3d(0, 0, 0);
       }
       100% {
-        transform: translateY(-50%);
+        transform: translate3d(0, calc(-100% - 14px), 0);
       }
     }
 
-    @keyframes moveColumnDown {
+    @keyframes moveGroupDown {
       0% {
-        transform: translateY(-50%);
+        transform: translate3d(0, calc(-100% - 14px), 0);
       }
       100% {
-        transform: translateY(0%);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    .showcase-poster-item {
+      background: #0d0c26;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 !important;
+      padding: 0;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      flex-shrink: 0;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      contain: paint layout;
+    }
+
+    .showcase-poster-item:hover {
+      transform: scale(1.04) translateY(-2px);
+      border-color: #38bdf8;
+      box-shadow: 0 12px 30px rgba(6, 182, 212, 0.35);
+      z-index: 10;
+    }
+
+    .showcase-poster-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    @media (max-width: 768px) {
+      .showcase-marquee-2col {
+        height: 420px;
+        gap: 10px;
+      }
+      .marquee-track-inner {
+        gap: 10px;
+      }
+      .marquee-group {
+        gap: 10px;
+      }
+      .showcase-poster-item {
+        border-radius: 12px;
+        aspect-ratio: 4 / 5;
+      }
+      @keyframes moveGroupUp {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          transform: translate3d(0, calc(-100% - 10px), 0);
+        }
+      }
+      @keyframes moveGroupDown {
+        0% {
+          transform: translate3d(0, calc(-100% - 10px), 0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
       }
     }
 
@@ -4938,7 +5021,7 @@
       <div class="pro-hero-content">
         <div class="pro-badge-pill">
           <span class="badge-dot">⚡</span>
-          <span id="hero-badge-txt">भारत की #1 डिजिटल ग्रोथ एजेंसी · GOS</span>
+          <span id="hero-badge-txt">डिजिटल ग्रोथ एजेंसी · GOS</span>
         </div>
 
         <h1 class="pro-hero-title">
@@ -5071,77 +5154,86 @@
           <div class="showcase-marquee-2col">
             <!-- Col 1 (Left - Moves UP) -->
             <div class="marquee-sub-col">
-              <div class="marquee-track-left">
-                <!-- Set 1 -->
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Pure Ghee Sweets Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png', 'Royal Jewellery Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Festive Offer Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets Sale" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Kirana & Grocery Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Kirana" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Coaching Academy Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" loading="lazy" />
+              <div class="marquee-track-inner marquee-move-up">
+                <!-- Group 1 -->
+                <div class="marquee-group">
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Pure Ghee Sweets Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png', 'Royal Jewellery Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Festive Offer Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets Sale" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Kirana & Grocery Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Kirana" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Coaching Academy Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" loading="eager" decoding="async" />
+                  </div>
                 </div>
 
-                <!-- Set 2 -->
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Pure Ghee Sweets Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png', 'Royal Jewellery Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Festive Offer Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets Sale" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Kirana & Grocery Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Kirana" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Coaching Academy Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" loading="lazy" />
+                <!-- Group 2 (Duplicate for seamless loop) -->
+                <div class="marquee-group" aria-hidden="true">
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png', 'Pure Ghee Sweets Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_13klsb13klsb13kl.png" alt="Sweets" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png', 'Royal Jewellery Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_dhrvgddhrvgddhrv.png" alt="Jewelry" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png', 'Festive Offer Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_9b1vdr9b1vdr9b1v (1).png" alt="Sweets Sale" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png', 'Kirana & Grocery Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_9agfn49agfn49agf.png" alt="Kirana" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png', 'Coaching Academy Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_j36lk8j36lk8j36l.png" alt="Coaching" loading="eager" decoding="async" />
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Col 2 (Right - Moves DOWN) -->
             <div class="marquee-sub-col">
-              <div class="marquee-track-right">
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png', 'Salon & Spa Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Fashion Bazaar Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Pizza & Burger Cafe Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe BOGO" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Electronics Store Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Pharmacy Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" loading="lazy" />
+              <div class="marquee-track-inner marquee-move-down">
+                <!-- Group 1 -->
+                <div class="marquee-group">
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png', 'Salon & Spa Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Fashion Bazaar Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Pizza & Burger Cafe Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe BOGO" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Electronics Store Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Pharmacy Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" loading="eager" decoding="async" />
+                  </div>
                 </div>
 
-                <!-- Set 2 -->
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png', 'Salon & Spa Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Fashion Bazaar Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Pizza & Burger Cafe Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe BOGO" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Electronics Store Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" loading="lazy" />
-                </div>
-                <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Pharmacy Poster')">
-                  <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" loading="lazy" />
+                <!-- Group 2 (Duplicate for seamless loop) -->
+                <div class="marquee-group" aria-hidden="true">
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png', 'Salon & Spa Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_gl2q47gl2q47gl2q.png" alt="Salon" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png', 'Fashion Bazaar Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_nn6hsmnn6hsmnn6h.png" alt="Fashion" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png', 'Pizza & Burger Cafe Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_phjfhhphjfhhphjf.png" alt="Cafe BOGO" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png', 'Electronics Store Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_gjicuogjicuogjic.png" alt="Electronics" loading="eager" decoding="async" />
+                  </div>
+                  <div class="showcase-poster-item" onclick="openLightbox('watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png', 'Pharmacy Poster')">
+                    <img src="watermark-removed-Gemini_Generated_Image_gktfxugktfxugktf.png" alt="Pharmacy" loading="eager" decoding="async" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -6273,7 +6365,7 @@ const translations = {
     'nav-cta-btn': '🚀 पैक्स देखें',
 
     // Hero
-    'hero-badge-txt': 'भारत की #1 डिजिटल ग्रोथ एजेंसी · GOS',
+    'hero-badge-txt': 'डिजिटल ग्रोथ एजेंसी · GOS',
     'hero-title-line1': 'अपनी दुकान को दें',
     'hero-title-highlight': 'डिजिटल पहचान',
     'hero-desc-txt': '4K WhatsApp स्टेटस, फ़ेस्टिवल पोस्टर्स और HD प्रोमो वीडियोज़ — 24 घंटे में रेडी!',
@@ -6442,7 +6534,7 @@ const translations = {
     'nav-cta-btn': '🚀 View Packs',
 
     // Hero
-    'hero-badge-txt': "India's #1 Digital Growth Agency · GOS",
+    'hero-badge-txt': "Digital Growth Agency · GOS",
     'hero-title-line1': 'Give Your Store a',
     'hero-title-highlight': 'Digital Identity',
     'hero-desc-txt': '4K WhatsApp Status, Festival Posters & HD Promo Videos — Ready in 24 Hours!',
