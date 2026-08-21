@@ -4577,7 +4577,7 @@
         <div class="footer-brand-col">
           <div class="brand">
             <div class="brand-logo-wrap">
-              <img src="Gemini_Generated_Image_ney6h1ney6h1ney6.png" alt="Grow Online Shop Logo" />
+              <div class="brand-logo-badge" style="background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ffffff; font-size: 1.1rem; box-shadow: 0 0 16px rgba(6, 182, 212, 0.6); font-family: var(--font-heading, sans-serif); letter-spacing: 0.5px;">GOS</div>
             </div>
             <div class="brand-info">
               <span class="brand-title">Grow Online Shop</span>
@@ -4674,10 +4674,22 @@
   const framePaths = [];
   for (let i = 1; i <= TOTAL_FRAMES; i++) {
     const numStr = String(i).padStart(3, '0');
-    framePaths.push(`frames/ezgif-frame-${numStr}.jpg`);
+    framePaths.push(`ezgif-frame-${numStr}.jpg`);
   }
 
   const storyImg = document.getElementById('hero-story-img');
+  if (storyImg) {
+    storyImg.onerror = function() {
+      const src = this.src;
+      if (src.includes('/frames/')) {
+        this.src = src.replace('/frames/', '/');
+      } else {
+        const parts = src.split('/');
+        const filename = parts.pop();
+        this.src = parts.join('/') + '/frames/' + filename;
+      }
+    };
+  }
   const track = document.getElementById('hero-scroll-track');
   const phaseTag = document.getElementById('hero-phase-tag');
   const phaseTitle = document.getElementById('hero-phase-title');
